@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block mainSection %}
+<div id="championIcons">
+    {% block champIcons %}
+        {% for key in champions %}
+        <div id={{key.boxID}} class="champBox">
+            
+            <img src={{key.url}}>
+        </div>
+        {% endfor %}
+    {% endblock %}
+</div>
+{% endblock %}
