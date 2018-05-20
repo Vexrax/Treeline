@@ -2,7 +2,6 @@ from django.shortcuts import HttpResponse, render
 from django.template import loader
 import json
 import os
-import collections
 
 
 
@@ -15,6 +14,7 @@ def index(request):
         data = json.load(f)
 
     patch = "8.7.1"
+    data = data["data"]
     #loop through json
     for key in data:
         data[key]["boxID"] = "champion_" + key
