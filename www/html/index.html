@@ -1,3 +1,34 @@
+<!-- Loads static data -->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/static/css/style.css' %}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- navbar-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Treeline.gg</a>
+        </div>
+
+        <!-- buttons -->
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">MEMES</a></li>
+            <li><a href="#">FAQ</a></li>
+        </ul>
+
+        <!-- search bar-->
+        <form class="navbar-form navbar-left" action="/action_page.php">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Champion Name">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</nav>
+
+
 <html>
     
     <body>
