@@ -1,6 +1,7 @@
 /*change the background color*/
 .navbar-custom {
     background-color: #0B0C10;
+    min-height: 80px;
 }
 
 /* change the brand and text color */
@@ -29,4 +30,26 @@
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
     background-color: #0B0C10;
+}
+.navbar-brand {
+  padding: 0 15px;
+  height: 80px;
+  line-height: 80px;
+}
+.navbar-form {
+    min-height: 60px;
+    line-height: 60px;
+}
+.navbar-left{
+    min-height: 60px;
+    line-height: 60px;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 26.5px;
+    padding-bottom: 26.5px;
+    line-height: 27px;
+  }
 }
