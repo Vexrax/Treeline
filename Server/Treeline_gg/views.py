@@ -32,9 +32,11 @@ def index(request):
 
 
 def handle_search(request):
-    print(request.GET.get("name"))
     if request.method == "POST":
-        return HttpResponseRedirect('/champion/?name=' + request.POST.get("title", ""))
+        return HttpResponseRedirect('/champion/' + request.POST.get("title", ""))
     else:
+        renderchamp(request)
         return render(request, 'championpage.html')
 
+def renderchamp(request):
+    print("rendering champ data")
