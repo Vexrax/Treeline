@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block mainSection %}
+<div id="championIcons">
+    {% block champIcons %}
+        {% for key in champions %}
+        <a href='{% get_redirect champions key %}'>
+            <div id="{% get_boxID champions key %}" class="champBox">
+                    <img src="{% get_url champions key %}">
+            </div>
+        </a>
+        {% endfor %}
+    {% endblock %}
+</div>
+{% endblock %}
