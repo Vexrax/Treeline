@@ -10,6 +10,8 @@ body
     height: auto;
     width: auto;
     max-width: 60px;
+    min-width: 60px;
+    min-height: 60px;
     margin: 5px;
     display: inline-block;
     overflow: hidden;
@@ -30,7 +32,15 @@ img {
     padding-left: .5%;
     padding-right: .5%;
     min-height: 100%;
-    border: 2px solid blue;
-    position: relative;
-    
+    position: absolute;
+    display: inline-block;
+}
+
+.winrateSection {
+    width: 27.5%;
+    height: 100%;
+    left: 10%;
+    background-color: black;
+    position: absolute;
+    display: inline-block;
 }
