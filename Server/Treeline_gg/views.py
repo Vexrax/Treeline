@@ -11,19 +11,7 @@ from django.shortcuts import HttpResponse, render
 from django.template import loader
 from django.template.defaulttags import register
 
-#create custom tags for later use
-@register.simple_tag
-def get_item(myDict, key):
-    return myDict.get(key)
-@register.simple_tag
-def get_boxID(myDict, key):
-    return myDict.get(key).get("boxID")
-@register.simple_tag
-def get_url(myDict, key):
-    return myDict.get(key)["url"]
-@register.simple_tag
-def get_redirect(myDict, key):
-    return myDict.get(key).get("redirect")
+
 
 def index(request):
     #return HttpResponse("lol")
@@ -43,7 +31,7 @@ def index(request):
         data[key]["redirect"] = "/champion/" + key
         data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
 
-    print(data)
+    #print(data)
     #create context var
     context = {
         'champions': data,
@@ -63,3 +51,20 @@ def handle_search(request):
 
 def renderchamp(request):
     print("rendering champ data")
+
+#create custom tags for later use
+@register.simple_tag
+def get_item(myDict, key):
+    return myDict.get(key)
+@register.simple_tag
+def get_boxID(myDict, key):
+    return myDict.get(key).get("boxID")
+@register.simple_tag
+def get_url(myDict, key):
+    return myDict.get(key)["url"]
+@register.simple_tag
+def get_redirect(myDict, key):
+    return myDict.get(key).get("redirect")
+@register.simple_tag
+def get_name(myDict, key):
+    return myDict.get(key).get("name")
