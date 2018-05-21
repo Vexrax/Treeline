@@ -9,5 +9,4 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     url('champion/', views.handle_search, name='handle_search'),
-
-] 
+]

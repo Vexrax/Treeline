@@ -58,5 +58,8 @@ def handle_search(request):
     if request.method == "POST":
         return HttpResponseRedirect('/champion/?name=' + request.POST.get("title", ""))
     else:
+        renderchamp(request)
         return render(request, 'championpage.html')
 
+def renderchamp(request):
+    print("rendering champ data")
