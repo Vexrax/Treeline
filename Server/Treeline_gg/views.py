@@ -56,7 +56,7 @@ def index(request):
 
 def handle_search(request):
     if request.method == "POST":
-        return HttpResponseRedirect('/champion/' + request.POST.get("title", ""))
+        return HttpResponseRedirect('/champion/?name=' + request.POST.get("title", ""))
     else:
         return render(request, 'championpage.html')
 
