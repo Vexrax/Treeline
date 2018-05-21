@@ -1,4 +1,9 @@
 import json, operator
+from django.shortcuts import HttpResponse, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.template import loader
+
 import os
 import collections
 
@@ -47,3 +52,11 @@ def index(request):
     #get template
     template = loader.get_template("homePage.html")
     return HttpResponse(template.render(context, request))
+
+
+def handle_search(request):
+    if request.method == "POST":
+        return HttpResponseRedirect('/champion/' + request.POST.get("title", ""))
+    else:
+        return render(request, 'championpage.html')
+
