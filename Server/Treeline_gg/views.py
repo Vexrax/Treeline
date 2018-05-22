@@ -14,7 +14,6 @@ from django.template.defaulttags import register
 
 
 def index(request):
-    #return HttpResponse("lol")
     #get current dir
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     #open champion json file
@@ -23,8 +22,7 @@ def index(request):
         data = data["data"]
     
     patch = "8.7.1"
-    #data = data["data"]
-    #data = sorted(data.items(), key: x[1])
+    
     #loop through json adding id and url
     for key in data:
         data[key]["boxID"] = "champion_" + key

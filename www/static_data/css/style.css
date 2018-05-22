@@ -13,6 +13,7 @@ body
     min-height: 60px;
     margin: 5px;
     overflow: hidden;
+    display: block;
 }
 
 .champBox:hover {
@@ -49,9 +50,9 @@ img {
 
 .champBoxBuffer {
     width: 80px;
-    display: block;
+    display: inline-block;
 }
 
-.champBoxContainer {
-    display: inline;
+.champBoxName {
+    display: block;
 }
