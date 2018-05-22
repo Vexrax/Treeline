@@ -44,15 +44,19 @@ img {
     display: inline-block;
 }
 
-.championIcons {
-    display: block;
-}
-
 .champBoxBuffer {
     width: 80px;
+    height: 150px;
     display: inline-block;
+    overflow: hidden;
 }
 
 .champBoxName {
     display: block;
+    text-align: center;
+    
+    height: 50px;
+}
+.champBoxName:hover {
+    cursor: pointer;
 }

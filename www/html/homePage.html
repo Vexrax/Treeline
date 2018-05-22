@@ -4,13 +4,14 @@
 <a class="champBoxContainer">
     {% block champIcons %}
         {% for key in champions %}
-        <div href='{% get_redirect champions key %}' class="champBoxBuffer">
-            <div id="{% get_boxID champions key %}" class="champBox">
-                <img src="{% get_url champions key %}">
-                
+        <a  href='{% get_redirect champions key %}'>
+            <div class="champBoxBuffer">
+                <div id="{% get_boxID champions key %}" class="champBox">
+                    <img src="{% get_url champions key %}">
+                </div>
+                <div class="champBoxName">{% get_name champions key %}</div>
             </div>
-            <div class="champBoxName">{% get_name champions key %}</div>
-        </div>
+        </a>
         {% endfor %}
     {% endblock %}
 </a>
