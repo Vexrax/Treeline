@@ -8,6 +8,6 @@ with open('../../../www/static_data/data_files/champs.json') as champFile:
 
 for key in data:
     print('Converting image for ' + key)
-    img = Image.open('../../../www/static_data/data_files/icons/' + key + '.png').convert('LA')
+    img = Image.open('../../../www/static_data/data_files/icons/' + key + '.png').convert('L')
     img.save('../../../www/static_data/data_files/icons/' + key + '_greyscale.png')
     print('... done')
