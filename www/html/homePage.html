@@ -1,15 +1,17 @@
+<!DOCTYPE html>
 {% extends "index.html" %}
-
 {% block mainSection %}
-<div id="championIcons">
+<a class="champBoxContainer">
     {% block champIcons %}
         {% for key in champions %}
-        <a href='{% get_redirect champions key %}'>
+        <div href='{% get_redirect champions key %}' class="champBoxBuffer">
             <div id="{% get_boxID champions key %}" class="champBox">
-                    <img src="{% get_url champions key %}">
+                <img src="{% get_url champions key %}">
+                
             </div>
-        </a>
+            <div class="champBoxName">{% get_name champions key %}</div>
+        </div>
         {% endfor %}
     {% endblock %}
-</div>
+</a>
 {% endblock %}
