@@ -18,7 +18,7 @@ for key in data:
     if not (img_data.ok):
         print("Problem downloading image for: " + key)
     else:
-        with open('../../../www/static_data/data_files/icons/' + key + '.png') as img:
-            img.write(img_data)
+        with open('../../../www/static_data/icons/' + key + '.png', 'wb') as img:
+            img.write(img_data.content)
             print("Done downloading image for: " + key)
         
