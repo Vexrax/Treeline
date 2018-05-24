@@ -27,7 +27,8 @@ def index(request):
     for key in data:
         data[key]["boxID"] = "champion_" + key
         data[key]["redirect"] = "/champion/" + key
-        data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
+        #data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
+        data[key]["url"] = "/static/icons/" + key + ".png"
 
     #print(data)
     #create context var
