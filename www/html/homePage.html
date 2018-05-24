@@ -4,10 +4,10 @@
 <a class="champBoxContainer">
     {% block champIcons %}
         {% for key in champions %}
-        <a  href='{% get_redirect champions key %}'>
+        <a href='{% get_redirect champions key %}'>
             <div class="champBoxBuffer">
                 <div id="{% get_boxID champions key %}" class="champBox">
-                    <img src="{% get_url champions key %}">
+                    <img src="{% get_url champions key %}" class="champImg">
                 </div>
                 <div class="champBoxName">{% get_name champions key %}</div>
             </div>
@@ -15,4 +15,19 @@
         {% endfor %}
     {% endblock %}
 </a>
+{% endblock %}
+
+{% block wrSection %}
+<div class="tab">
+    <button class="tablinks" onclick="">Bot</button>
+    <button class="tablinks" onclick="">Solo Top</button>
+    <button class="tablinks" onclick="">Jungle</button>
+    <button class="tablinks" onclick="">Hyper Carry</button>
+    <button class="tablinks" onclick="">Support</button>
+</div>
+<div class="wrChampBlock">
+    <div class="wrChampImgBox">
+        <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/FiddleSticks.png" alt="">
+    </div>
+</div>
 {% endblock %}
