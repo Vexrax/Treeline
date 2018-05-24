@@ -40,7 +40,7 @@ def index(request):
     template = loader.get_template("homePage.html")
     return HttpResponse(template.render(context, request))
 
-
+#redirect searches
 def handle_search(request):
     if request.method == "POST":
         return HttpResponseRedirect('/champion/?name=' + request.POST.get("title", ""))
@@ -52,6 +52,7 @@ def renderchamp(request):
     print("rendering champ data")
 
 #create custom tags for later use
+#these are just to get data from the dict created above
 @register.simple_tag
 def get_item(myDict, key):
     return myDict.get(key)
