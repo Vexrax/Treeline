@@ -94,15 +94,12 @@ img {
 }
 
 .wrChampImgBox {
+    width: 64px;
     height: auto;
-    width: auto;
-    max-height: 80%;
-    min-height: 80%;
-    padding-left: 100%;
-    left: 10%;
+    left: 8px;
     top: 10%;
     overflow: hidden;
     position: relative;
-
+    display: inline-block;
     background-color: lightcoral;
 }
