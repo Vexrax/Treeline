@@ -5,31 +5,11 @@ body
     margin: 0;
 }
 
-.champBox {
-    height: auto;
-    width: auto;
-    max-width: 80px;
-    min-width: 80px;
-    padding-top: 5px;
-    margin: 0 auto; 
-    overflow: hidden;
-    display: block;
-    position: relative;
-    
+div[class^="col-"] {
+    outline: 2px solid blue;
 }
-
-.champBox:hover {
-    cursor: pointer;
-}
-img {
-    max-width: 100%;
-    max-height: 100%;   
-}
-
-
 
 .champBoxSection{
-    background-color: black;
     width: 50%;
     left: 40%;
     padding-left: .5%;
@@ -47,12 +27,39 @@ img {
     position: absolute;
     display: inline-block;
 }
-
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
 .champBoxBuffer {
     width: 110px;
     height: 120px;
     display: inline-block;
     overflow: hidden;
+    margin: 1px;
+    background-color: rgb(36, 32, 32);
+}
+
+.champBoxBuffer:hover {
+    background-color: rgb(71, 63, 63);
+    cursor: pointer;
+}
+
+.champBox {
+    height: auto;
+    width: auto;
+    max-width: 80px;
+    min-width: 80px;
+    padding-top: 5px;
+    margin: 0 auto; 
+    display: block;
+    position: relative;
+    
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;   
 }
 
 .champBoxName {
@@ -65,19 +72,33 @@ img {
     cursor: pointer;
 }
 
+.lineContainer {
+    display: inline-block;
+    height: 0;
+    width: 0;
+}
+.v1 {
+    height: 100px;
+    width: 1px;
+    background-color: white;
+    display: inline-block;
+    bottom: 0%;
+    overflow: hidden;
+}
 
 /* Champ win rate box */
 .tab {
     width: 100%;
     background-color: grey;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .tablinks {
     height: 40px;/*idk why my editor says this is unused. DO NOT REMOVE!!! */
     min-width: 18.5%;
     margin: 0;
-    background-color: inherit;
+    background-color: transparent;
     border: none;
     outline: none;
     display: inline;

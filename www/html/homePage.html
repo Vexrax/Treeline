@@ -8,6 +8,7 @@
 {% block mainSection %}
 <a class="champBoxContainer">
     {% block champIcons %}
+        <!-- Done with pure html -->
         {% for key in champions %}
         <a href='{% get_redirect champions key %}'>
             <div class="champBoxBuffer">
@@ -15,10 +16,31 @@
                     <img src="{% get_url champions key %}" class="champImg">
                 </div>
                 <div class="champBoxName">{% get_name champions key %}</div>
+                
             </div>
+            
         </a>
         {% endfor %}
+
+        <!-- Done with Bootstrap's grid -->
+        <!-- <div class="row">
+        {% for key in champions %}
+        <div class="col-sm-2">
+            <a href='{% get_redirect champions key %}'>
+                <div class="champBoxBuffer">
+                    <div id="{% get_boxID champions key %}" class="champBox">
+                        <img src="{% get_url champions key %}" class="champImg">
+                    </div>
+                    <div class="champBoxName">{% get_name champions key %}</div>
+                    
+                </div>
+                
+            </a>
+        </div>
+        {% endfor %}
+        </div>-->
     {% endblock %}
+
 </a>
 {% endblock %}
 
@@ -30,6 +52,8 @@
     <button class="tablinks" onclick="">Hyper Carry</button>
     <button class="tablinks" onclick="">Support</button>
 </div>
+
+<!--For loop would be placed here-->
 <div class="wrChampBlock">
     <div class="wrChampImgBox">
         <img src="/static/icons/Aatrox.png" alt="">
