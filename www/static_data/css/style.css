@@ -1,9 +1,4 @@
-body
-{
-    height: 100%;
-    background-color:#1F2833;
-    margin: 0;
-}
+
 
 div[class^="col-"] {
     outline: 2px solid blue;
