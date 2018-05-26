@@ -28,4 +28,19 @@ class bestPractices(models.Model):
     #could remove champ_profile
     #could have linkers to rune table
 
+class gamesAnalyzed(models.Model):
+    entry_id = models.IntegerField(unique=True)#will be the game ID plus the participant id. This way it will be unique
+    game_id = models.IntegerField()#the riot given game id
+    participant_id = models.SmallIntegerField()#the riot given Participant ID
+    game_length = models.BigIntegerField()#game length
+    item_1 = models.SmallIntegerField() #item ids 1-6
+    item_2 = models.SmallIntegerField()
+    item_3 = models.SmallIntegerField()
+    item_4 = models.SmallIntegerField()
+    item_5 = models.SmallIntegerField()
+    item_6 = models.SmallIntegerField()
+    trinket = models.SmallIntegerField()#trinket id
+    
+
+
 
