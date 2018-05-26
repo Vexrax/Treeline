@@ -21,7 +21,7 @@ def index(request):
         data = json.load(f)
         data = data["data"]
     
-    patch = "8.7.1"
+    #patch = "8.7.1"
     
     #loop through json adding id and url
     for key in data:
