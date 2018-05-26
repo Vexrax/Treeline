@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+{% extends "index.html" %}
+{% block bodyBlock %}
+    <div class ="UsableArea">
+        <div class="champIconBox">
+            {% block champIconSection %}
+            {% endblock %}
+        </div>
+        <div class="summonerSpellsBox">
+            {% block summonerSpellSection %}
+            {% endblock %}
+        </div>
+        <div class="skillingOrderBox">
+            {% block skillingOrderSection %}
+            {% endblock %}
+        </div>
+        <div class="summaryBox">
+            {% block summaryBoxSection %}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}

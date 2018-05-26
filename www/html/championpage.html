@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<!-- Loads static data -->
-{% load static %}
-<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/ChampionPagestyle.css"/>
 
-<!-- navbar-->
-<div id="nav-placeholder">
-    {% include "navbar.html" %}
-</div>
-
-
-<html>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
-    <body>
-        CHAMPION PAGE
-        {% block mainSection %}
-        {% endblock %}
-    </body>
-    <script src="/static/js/test.js"></script>
-</html>
+{% extends "championpagestructure.html" %}
