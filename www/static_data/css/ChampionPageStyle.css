@@ -1,0 +1,45 @@
+.UsableArea{
+    left: 10%;
+    width: 80%;
+    height: 120%;
+    background-color: #1F2833;
+    position: absolute;
+
+}
+.champIconBox {
+    width: 27.5%;
+    height: 80px;
+    top: 2%;
+    background-color: black;
+    position: absolute;
+    display: inline-block;
+}
+
+.summonerSpellsBox {
+    width: 12.5%;
+    height: 80px;
+    top: 2%;
+    left: 33%;
+    background-color: black;
+    position: absolute;
+    display: inline-block;
+}
+
+.skillingOrderBox{
+    width: 28%;
+    height: 80px;
+    top: 2%;
+    right: 20%;
+    background-color: black;
+    position: absolute;
+    display: inline-block;
+}
+
+.summaryBox{
+    width: 100%;
+    height: 70%;
+    top: 15%;
+    background-color: black;
+    position: absolute;
+    display: inline-block;
+}
