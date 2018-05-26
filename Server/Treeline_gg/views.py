@@ -51,6 +51,9 @@ def handle_search(request):
 def renderchamp(request):
     print("rendering champ data")
 
+def test_page(request):
+    return render(request, 'testPage.html')
+
 #create custom tags for later use
 #these are just to get data from the dict created above
 @register.simple_tag
