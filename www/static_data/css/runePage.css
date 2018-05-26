@@ -1,0 +1,15 @@
+body {
+    color: white;
+}
+
+div[class^='.container'] {
+    width: 100px;
+    width: 100%;
+}
+
+.section {
+    display: block;
+    position: relative;
+    width: 50%;
+    
+}
