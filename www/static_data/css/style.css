@@ -60,7 +60,7 @@ img {
 .champBoxName {
     display: block;
     text-align: center;
-    
+    color: white;
     height: 50px;
 }
 .champBoxName:hover {
