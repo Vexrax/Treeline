@@ -2,36 +2,23 @@
 <link rel="stylesheet" type="text/css" href="/static/css/runePage.css"/>
 
 <!--  -->
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-            <div class="col-sm-1">a Col</div>
-        </div>
-    </div>
+
+{% for tier in runePageJSON.slots %}
+<div class="row">
+    {% if forloop.counter == 1 %}
+        {% for rune in tier.runes %}
+            <div class="col">
+                <img src="/static/icons/runes/rune_icons/{{rune.id}}.png" class="keystoneImg">
+            </div>
+        {% endfor %}
+    {% else %}
+        {% for rune in tier.runes %}
+            <div class="col">
+                <img src="/static/icons/runes/rune_icons/{{rune.id}}.png" class="regularImg">
+            </div>
+        {% endfor %}
+
+    {% endif %}
+    
 </div>
+{% endfor %}

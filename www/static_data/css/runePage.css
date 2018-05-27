@@ -2,9 +2,15 @@ body {
     color: white;
 }
 
-div[class^='.container'] {
-    width: 100px;
-    width: 100%;
+
+.container {
+    width: 25%;
+    position: absolute;
+}
+
+.col {
+    position: relative;
+    padding: 0px;
 }
 
 .section {
@@ -12,4 +18,16 @@ div[class^='.container'] {
     position: relative;
     width: 50%;
     
+}
+
+.keystoneImg {
+    width: 100%;
+}
+
+.regularImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 15%;
 }

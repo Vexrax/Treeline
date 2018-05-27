@@ -28,7 +28,7 @@ def index(request):
         data[key]["boxID"] = "champion_" + key
         data[key]["redirect"] = "/champion/" + key
         #data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
-        data[key]["url"] = "/static/icons/" + key + ".png"
+        data[key]["url"] = "/static/icons/champions/" + key + ".png"
 
     #print(data)
     #create context var
@@ -52,7 +52,21 @@ def renderchamp(request):
     print("rendering champ data")
 
 def test_page(request):
-    return render(request, 'testPage.html')
+    ttree = "Domination" #this will be fed in later
+
+    ##this section needs to be loaded for every runepage
+    with open('../www/static_data/data_files/rune_data.json') as f:
+        rune_page_json = json.load(f)
+    for tree in rune_page_json:
+        if(tree["key"] == ttree):
+            rune_page_json = tree
+    context = {
+        'runePageJSON': rune_page_json,
+    }
+    ##end sections
+
+    template = loader.get_template("testpage.html")
+    return HttpResponse(template.render(context, request))
 
 #create custom tags for later use
 #these are just to get data from the dict created above
