@@ -26,11 +26,11 @@
 }
 .btn-outline-success:hover {
     color: black;
-    background-color: #66FCF1;
+    background-color: rgba(102, 252, 239, 0.26);
     border-color: #66FCF1;
 }
 .btn-outline-success:not(:disabled):not(.disabled).active, .btn-outline-success:not(:disabled):not(.disabled):active, .show>.btn-outline-success.dropdown-toggle {
-    color: #fff;
+    color: #000000;
     background-color: #66FCF1;
     border-color: #66FCF1
 }
