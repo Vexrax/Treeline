@@ -18,7 +18,7 @@ if(sys.argv[1] == "items"):
     response.append(requests.get(os.getenv("RIOT_HOST") + "/lol/static-data/v3/items?locale=en_US&itemListData=all&tags=all&api_key=" + os.getenv("RIOT_KEY")))
     file_name.append("item_data")
 elif sys.argv[1] == 'runes':
-    response.append(requests.get(os.getenv("RIOT_HOST") + "/lol/static-data/v3/runes?locale=en_US&runeListData=all&tags=all&api_key=" + os.getenv("RIOT_KEY")))
+    response.append(requests.get(os.getenv("RIOT_HOST") + "/lol/static-data/v3/reforged-rune-paths?api_key=" + os.getenv("RIOT_KEY")))
     file_name.append("rune_data")
 elif sys.argv[1] == 'champions':
     response.append(requests.get(os.getenv("RIOT_HOST") + "/lol/static-data/v3/champions?locale=en_US&champListData=all&tags=all&dataById=false&api_key=" + os.getenv("RIOT_KEY")))
@@ -28,7 +28,7 @@ elif sys.argv[1] == 'all':
     response.append(requests.get(os.getenv("RIOT_HOST") + "/lol/static-data/v3/items?locale=en_US&itemListData=all&tags=all&api_key=" + os.getenv("RIOT_KEY")))
     file_name.append("item_data")
     #Get runes
-    response.append(requests.get(os.getenv("RIOT_HOST") + "/lol/static-data/v3/runes?locale=en_US&runeListData=all&tags=all&api_key=" + os.getenv("RIOT_KEY")))
+    response.append(requests.get(os.getenv("RIOT_HOST") + "/lol/static-data/v3/reforged-rune-paths?api_key=" + os.getenv("RIOT_KEY")))
     file_name.append("rune_data")
     #Get champions
     response.append(requests.get(os.getenv("RIOT_HOST") + "/lol/static-data/v3/champions?locale=en_US&champListData=all&tags=all&dataById=false&api_key=" + os.getenv("RIOT_KEY")))
