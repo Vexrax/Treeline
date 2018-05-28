@@ -63,6 +63,7 @@ def fileGameData(game):
             quit()
     #do some stuff to actually put the game data into the sqlite table
     #Stuff with matchlists will likely be done it its own file due to the code and work it will require
+    #Also don't forget to add summoners to list_of_summoners here
 
 go = True
 #This should be checking that the current number of games is less than the desired
