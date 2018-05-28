@@ -1,13 +1,28 @@
 from os.path import join, dirname
 import os
-import sys, dotenv
-import json
-import requests
-import riotAPIReference
+import sys
 import time
+import json
+import dotenv
+import riotAPIReference
+import django
 
+
+# Redirect system import directory up a fewlevels
+current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+current_dir = os.path.dirname(current_dir)
+parent_dir = current_dir
+sys.path.insert(0, parent_dir) 
+
+os.environ["DJANGO_SETTINGS_MODULE"] = 'Treeline.settings'
+django.setup()
+
+#This is not an error. File runs with this one
+#Also needs to come after the djano setup
+from Treeline_gg.models import gamesAnalyzed
+
+quit()
 envpath = join(dirname(__file__), '../../../.env')
-
 dotenv.load_dotenv(dotenv_path=envpath)
 #takes up to 2 commandline arguments
 #first one should be a summoner name which will act as a seed
