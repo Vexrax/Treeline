@@ -12,6 +12,7 @@ div[class^="col-"] {
     min-height: 100%;
     position: absolute;
     display: inline-block;
+    top: 105px;
 }
 
 .winRateSection {
@@ -21,6 +22,7 @@ div[class^="col-"] {
     background-color: black;
     position: absolute;
     display: inline-block;
+    top: 105px;
 }
 .grid-container {
     display: grid;
