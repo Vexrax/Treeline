@@ -1,33 +1,28 @@
-import json, operator
+import json
 from django.shortcuts import HttpResponse, render
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.template import loader
 
 import os
-import collections
 
-from django.shortcuts import HttpResponse, render
-from django.template import loader
 from django.template.defaulttags import register
 
 
-
 def index(request):
-    #get current dir
+    # get current dir
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    #open champion json file
-    with open(os.path.join(BASE_DIR , '../www/static_data/data_files/champs.json')) as f:
+    # open champion json file
+    with open(os.path.join(BASE_DIR, '../www/static_data/data_files/champs.json')) as f:
         data = json.load(f)
         data = data["data"]
     
-    #patch = "8.7.1"
+    # patch = "8.7.1"
     
-    #loop through json adding id and url
+    # loop through json adding id and url
     for key in data:
         data[key]["boxID"] = "champion_" + key
         data[key]["redirect"] = "/champion/" + key
-        #data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
+        # data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
         data[key]["url"] = "/static/icons/champions/" + key + ".png"
 
     #print(data)
