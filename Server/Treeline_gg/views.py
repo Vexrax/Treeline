@@ -52,16 +52,19 @@ def renderchamp(request):
     print("rendering champ data")
 
 def test_page(request):
-    ttree = "Domination" #this will be fed in later
-
+    ptree = "Sorcery" #this will be fed in later
+    stree = "Domination"
     ##this section needs to be loaded for every runepage
     with open('../www/static_data/data_files/rune_data.json') as f:
         rune_page_json = json.load(f)
-    for tree in rune_page_json:
-        if(tree["key"] == ttree):
-            rune_page_json = tree
+    #for tree in rune_page_json:
+    #    if(tree["key"] == ttree):
+    #        rune_page_json = tree
     context = {
         'runePageJSON': rune_page_json,
+        'primaryTree': ptree,
+        'secondaryTree': stree,
+        'activeRunes': {8214, 8226, 8234, 8232, 8126, 8120},
     }
     ##end sections
 
@@ -85,3 +88,9 @@ def get_redirect(myDict, key):
 @register.simple_tag
 def get_name(myDict, key):
     return myDict.get(key).get("name")
+@register.simple_tag
+def is_active_rune(active_runes, current_rune):
+    for numb in active_runes:
+        if numb == current_rune["id"]:
+            return current_rune["id"]
+    return str(current_rune["id"]) + "_greyscale"
