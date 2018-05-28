@@ -91,7 +91,8 @@ while go:
         fileGameData(game)
     #get next summoner
     current_summoner_accountID = list_of_summoners.pop()
-        
+    
+    time.sleep(2.5) #sleep to try and prevent going over rate limit
         
 
 
