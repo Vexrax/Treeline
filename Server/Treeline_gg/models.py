@@ -29,7 +29,7 @@ class bestPractices(models.Model):
     #could have linkers to rune table
 
 class gamesAnalyzed(models.Model):
-    entry_id = models.IntegerField(unique=True)#will be the game ID plus the participant id. This way it will be unique
+    entry_id = models.IntegerField(unique=True, primary_key=True)#will be the game ID plus the participant id. This way it will be unique
     game_id = models.IntegerField()#the riot given game id
     participant_id = models.SmallIntegerField()#the riot given Participant ID
     game_length = models.BigIntegerField()#game length
