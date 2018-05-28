@@ -3,7 +3,7 @@
 
 <!--  -->
 {% for tree in runePageJSON %}
-    {% if tree.key == primaryTree %}
+    {% if tree.id == primaryTree %}
         {% for tier in tree.slots %}
         <div class="row">
             {% if forloop.counter == 1 %}

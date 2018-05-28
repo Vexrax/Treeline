@@ -52,14 +52,13 @@ def renderchamp(request):
     print("rendering champ data")
 
 def test_page(request):
-    ptree = "Sorcery" #this will be fed in later
-    stree = "Domination"
-    ##this section needs to be loaded for every runepage
+    ptree = 8200 #this will be fed in later
+    stree = 8100
     with open('../www/static_data/data_files/rune_data.json') as f:
         rune_page_json = json.load(f)
-    #for tree in rune_page_json:
-    #    if(tree["key"] == ttree):
-    #        rune_page_json = tree
+    #the full runepage json needds to be loaded along with the string name of the primary and secondary rune pages
+    #An iteratable list of the active runes also is required to be passed
+    #this has no error checking, that should be done before passing the values
     context = {
         'runePageJSON': rune_page_json,
         'primaryTree': ptree,
