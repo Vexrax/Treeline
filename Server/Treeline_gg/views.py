@@ -1,33 +1,28 @@
-import json, operator
+import json
 from django.shortcuts import HttpResponse, render
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.template import loader
 
 import os
-import collections
 
-from django.shortcuts import HttpResponse, render
-from django.template import loader
 from django.template.defaulttags import register
 
 
-
 def index(request):
-    #get current dir
+    # get current dir
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    #open champion json file
-    with open(os.path.join(BASE_DIR , '../www/static_data/data_files/champs.json')) as f:
+    # open champion json file
+    with open(os.path.join(BASE_DIR, '../www/static_data/data_files/champs.json')) as f:
         data = json.load(f)
         data = data["data"]
     
-    #patch = "8.7.1"
+    # patch = "8.7.1"
     
-    #loop through json adding id and url
+    # loop through json adding id and url
     for key in data:
         data[key]["boxID"] = "champion_" + key
         data[key]["redirect"] = "/champion/" + key
-        #data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
+        # data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
         data[key]["url"] = "/static/icons/champions/" + key + ".png"
 
     #print(data)
@@ -52,16 +47,18 @@ def renderchamp(request):
     print("rendering champ data")
 
 def test_page(request):
-    ttree = "Domination" #this will be fed in later
-
-    ##this section needs to be loaded for every runepage
+    ptree = 8200 #this will be fed in later
+    stree = 8100
     with open('../www/static_data/data_files/rune_data.json') as f:
         rune_page_json = json.load(f)
-    for tree in rune_page_json:
-        if(tree["key"] == ttree):
-            rune_page_json = tree
+    #the full runepage json needds to be loaded along with the string name of the primary and secondary rune pages
+    #An iteratable list of the active runes also is required to be passed
+    #this has no error checking, that should be done before passing the values
     context = {
         'runePageJSON': rune_page_json,
+        'primaryTree': ptree,
+        'secondaryTree': stree,
+        'activeRunes': {8214, 8226, 8234, 8232, 8126, 8120},
     }
     ##end sections
 
@@ -85,3 +82,9 @@ def get_redirect(myDict, key):
 @register.simple_tag
 def get_name(myDict, key):
     return myDict.get(key).get("name")
+@register.simple_tag
+def is_active_rune(active_runes, current_rune):
+    for numb in active_runes:
+        if numb == current_rune["id"]:
+            return current_rune["id"]
+    return str(current_rune["id"]) + "_greyscale"

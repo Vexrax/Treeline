@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Treeline_gg.apps.TreelineGgConfig',
+    #'Treeline_gg.apps.TreelineGgConfig',
+    'Treeline_gg',
 ]
 
 MIDDLEWARE = [

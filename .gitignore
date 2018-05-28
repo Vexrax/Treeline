@@ -1,3 +1,5 @@
 Treeline_gg/__pycache__/
 Treeline/__pycache__/
 __pycache__/
+.env
+.pylintrc
