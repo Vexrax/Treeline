@@ -79,10 +79,13 @@ def getStartingItems(game_timeline, participant_id):
         except KeyError:
             continue
         if event["participantId"] == participant_id:
-            if event["type"] == "ITEM_PURCHASED":
-                items.append(event["itemId"])
-            if event["type"] == "ITEM_SOLD" or event["type"] == "ITEM_DESTROYED":
-                items.remove(event["itemId"])
+            try:
+                if event["type"] == "ITEM_PURCHASED":
+                    items.append(event["itemId"])
+                if event["type"] == "ITEM_SOLD" or event["type"] == "ITEM_DESTROYED":
+                    items.remove(event["itemId"])
+            except ValueError:
+                print("Error removing item from list")
     if(len(items) == 0):
         return ""
     itemString = ""
