@@ -37,6 +37,7 @@ class gamesAnalyzed(models.Model):
     win = models.BooleanField()
     champion_level = models.SmallIntegerField()
     game_length = models.IntegerField()
+    game_rank = models.CharField(max_length=20, default="")
     #Summoners
     summoner_spell_1 = models.SmallIntegerField()
     summoner_spell_2 = models.SmallIntegerField()
