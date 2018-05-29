@@ -33,7 +33,7 @@ class gamesAnalyzed(models.Model):
     game_id = models.IntegerField()#the riot given game id
     participant_id = models.SmallIntegerField()#the riot given Participant ID
     champ_id = models.SmallIntegerField()
-    game_length = models.BigIntegerField()#game length
+    role = models.CharField(max_length=15, default="")
     win = models.BooleanField()
     champion_level = models.SmallIntegerField()
     game_length = models.IntegerField()
@@ -49,15 +49,15 @@ class gamesAnalyzed(models.Model):
     item_6 = models.SmallIntegerField()
     trinket = models.SmallIntegerField()#trinket id
 
-    starting_items = models.CharField(max_length=50) # contains a comma seperated list of starting item ids
+    starting_items = models.CharField(max_length=50, default="") # contains a comma seperated list of starting item ids
 
     #Money
     gold_earned = models.SmallIntegerField()
     #gold_spent = models.SmallIntegerField()
     cs = models.SmallIntegerField()
-    neutral_minons_killed = models.SmallIntegerField()
-    neutral_minons_killed_team_jungle = models.SmallIntegerField()
-    neutral_minons_killed_enemy_jungle = models.SmallIntegerField()
+    neutral_minions_killed = models.SmallIntegerField()
+    neutral_minions_killed_team_jungle = models.SmallIntegerField()
+    neutral_minions_killed_enemy_jungle = models.SmallIntegerField()
 
     #KDA
     kills = models.SmallIntegerField()
