@@ -1,6 +1,7 @@
 import requests
 import dotenv
 import os
+import time
 
 #first load env
 env_path = "../../../.env"
@@ -54,3 +55,35 @@ def getTimelineWithMatchID(match_id):
         return Exception(res.status_code)
     return res.json()
 #################################################################################
+
+######### Functions for getting rank of summoner #########
+def getRankOfQueueWithSummonerID(summoner_id, queue):
+    res = requests.get(host + "/lol/league/v3/positions/by-summoner/" + str(summoner_id) + "?api_key=" + key)
+    if not res.ok:
+        return Exception(res.status_code)
+    for q in res.json():
+        if q["queueType"] == queue:
+            return q["tier"]
+    return "UNRANKED"
+
+def getRankOfQueueWithAccountID(account_id, queue):
+    #Get summoner profile
+    temp = getSummonerProfileWithAccountID(account_id)
+    if(isinstance(temp, Exception)):
+        if(str(temp) == "429"): #Rate limit exceeed
+            print("rate limit exceeded. Waiting...")
+            time.sleep(20)
+            #then try again
+            return getRankOfQueueWithAccountID(account_id, queue)
+        elif(str(temp) == "401"): #Unauthorized
+            #Lol key expired while sleuthing
+            print("Key is expired lol")
+            quit()
+        else:
+            #no idea what these would be. Just quit
+            quit()
+    #Get Summoner Id from profile
+    temp = temp["id"]
+
+    #get Rank
+    return getRankOfQueueWithSummonerID(temp, queue)
