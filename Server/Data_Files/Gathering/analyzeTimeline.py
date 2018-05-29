@@ -68,6 +68,30 @@ def determineRole(game_timeline, game_data, participant_id):
     return "Bottom"
 
 
+def getStartingItems(game_timeline, participant_id):
+    #get items purchased between 0 and 60 seconds
+    frame = game_timeline["frames"][1]
+    events = frame["events"]
+    items = []
+    for event in events:
+        try:
+            event["participantId"]
+        except KeyError:
+            continue
+        if event["participantId"] == participant_id:
+            if event["type"] == "ITEM_PURCHASED":
+                items.append(event["itemId"])
+            if event["type"] == "ITEM_SOLD" or event["type"] == "ITEM_DESTROYED":
+                items.remove(event["itemId"])
+    if(len(items) == 0):
+        return ""
+    itemString = ""
+    for i in range(0, len(items) - 1):
+        itemString += str(items[i]) + ", "
+    
+    itemString += str(items[len(items) - 1])
+    return itemString
+
 # Testing
 # game = ""
 # timeline = ""
