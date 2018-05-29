@@ -49,6 +49,8 @@ class gamesAnalyzed(models.Model):
     item_6 = models.SmallIntegerField()
     trinket = models.SmallIntegerField()#trinket id
 
+    starting_items = models.CharField(max_length=50) # contains a comma seperated list of starting item ids
+
     #Money
     gold_earned = models.SmallIntegerField()
     #gold_spent = models.SmallIntegerField()
