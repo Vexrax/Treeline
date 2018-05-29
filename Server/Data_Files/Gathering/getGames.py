@@ -6,7 +6,8 @@ import json
 import dotenv
 import riotAPIReference
 import django
-
+import math
+import analyzeTimeline
 
 # Redirect system import directory up a fewlevels
 current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,14 +22,84 @@ django.setup()
 #Also needs to come after the djano setup
 from Treeline_gg.models import gamesAnalyzed
 
-quit()
+def addGameToDatabase(game_data, timeline_data, inital_account_id):
+    # this is gonna be cancer
+    for participant_id in range(1, 7):
+        p_data = game_data["participants"][participant_id - 1]
+        p_stats = p_data["stats"]
+        victory = True if game_data["teams"][math.floor(participant_id/4)]["win"] == "Win" else False
+
+        var = gamesAnalyzed(
+            entry_id=int(str(game_data["gameId"]) + str(participant_id)),
+            game_id = game_data["gameId"],
+            participant_id=participant_id,
+            champ_id=p_data["championId"],
+            role=analyzeTimeline.determineRole(timeline_data, game_data, participant_id),
+            win=victory,
+            champion_level=p_stats["champLevel"],
+            game_length=game_data["gameDuration"],
+            summoner_spell_1=p_data["spell1Id"],
+            summoner_spell_2=p_data["spell2Id"],
+            item_1=p_stats["item0"],
+            item_2=p_stats["item1"],
+            item_3=p_stats["item2"],
+            item_4=p_stats["item3"],
+            item_5=p_stats["item4"],
+            item_6=p_stats["item5"],
+            trinket=3348,#lol
+            starting_items=analyzeTimeline.getStartingItems(timeline_data, participant_id),
+            gold_earned=p_stats["goldEarned"],
+            cs=p_stats["totalMinionsKilled"],
+            neutral_minions_killed=p_stats["neutralMinionsKilled"],
+            neutral_minions_killed_team_jungle=p_stats["neutralMinionsKilledTeamJungle"],
+            neutral_minions_killed_enemy_jungle=p_stats["neutralMinionsKilledEnemyJungle"],
+            kills=p_stats["kills"],
+            deaths=p_stats["deaths"],
+            assists=p_stats["assists"],
+            total_damage_dealt=p_stats["totalDamageDealt"],
+            physical_damage_dealt=p_stats["physicalDamageDealt"],
+            magic_damage_dealt=p_stats["magicDamageDealt"],
+            true_damage_dealt=p_stats["trueDamageDealt"],
+            total_damage_dealt_to_champions=p_stats["totalDamageDealtToChampions"],
+            physical_damage_dealt_to_champions=p_stats["physicalDamageDealtToChampions"],
+            magic_damage_dealt_to_champions=p_stats["magicDamageDealtToChampions"],
+            true_damage_dealt_to_champions=p_stats["trueDamageDealtToChampions"],
+            damage_to_objectives=p_stats["damageDealtToObjectives"],
+            total_damage_taken=p_stats["totalDamageTaken"],
+            physical_damage_taken=p_stats["physicalDamageTaken"],
+            magic_damage_taken=p_stats["magicalDamageTaken"],
+            true_damage_taken=p_stats["trueDamageTaken"],
+            cc_duration=p_stats["timeCCingOthers"],
+            total_healing=p_stats["totalHeal"],
+            primary_tree=1000,
+            secondary_tree=2000,
+            rune_1=p_stats["perk0"],
+            rune_2=p_stats["perk1"],
+            rune_3=p_stats["perk2"],
+            rune_4=p_stats["perk3"],
+            rune_5=p_stats["perk4"],
+            rune_6=p_stats["perk5"] 
+        )
+        var.save()
+
+# Testing
+# game = ""
+# timeline = ""
+# with open("../../../www/static_data/data_files/example_game_json.json") as gameJson:
+#     game = json.load(gameJson)
+
+# with open("../../../www/static_data/data_files/example_timeline.json") as timelineJson:
+#     timeline = json.load(timelineJson)
+
+# addGameToDatabase(game, timeline, 2)
+#quit()
 envpath = join(dirname(__file__), '../../../.env')
 dotenv.load_dotenv(dotenv_path=envpath)
 #takes up to 2 commandline arguments
 #first one should be a summoner name which will act as a seed
 #the second one is optional and the database will be filled up until this number
 seed_name = ""
-max_number = 1000
+max_number = 100
 
 if(len(sys.argv) > 3):
     print("Too many arguments. Requires (summoner_name, [max_entries])")
@@ -42,7 +113,7 @@ elif(len(sys.argv) == 3):
 else: # 1 extra arg
     seed_name = sys.argv[1]
 
-if not(isinstance(max_number, (int))):
+if not(isinstance(max_number, int)):
     print("Second argument must be a whole number")
     exit()
 
@@ -61,15 +132,29 @@ current_summoner_matchlist = ""
 list_of_summoners = [] #This is a list of summoners found who will be explored after exausting current summmoner's games
 
 ##Define required functions
-def fileGameData(game):
+def fileGameData(game, current_account_id):
     game_data = riotAPIReference.getSingleMatchDataWithMatchID(game["gameId"])
+    game_timeline = riotAPIReference.getTimelineWithMatchID(game["gameId"])
     #error check to ensure game was gotten correct
     if(isinstance(game_data, Exception)):
         if(str(game_data) == "429"): #Rate limit exceeed
-            time.sleep(5)
+            print("rate limit exceeded. Waiting...")
+            time.sleep(20)
             #then try again
-            fileGameData(game)
+            fileGameData(game, current_account_id)
         elif(str(game_data) == "401"): #Unauthorized
+            #Lol key expired while sleuthing
+            print("Key is expired lol")
+            quit()
+        else:
+            #no idea what these would be. Just quit
+            quit()
+    if(isinstance(game_timeline, Exception)):
+        if(str(game_timeline) == "429"): #Rate limit exceeed
+            time.sleep(10)
+            #then try again
+            fileGameData(game, current_account_id)
+        elif(str(game_timeline) == "401"): #Unauthorized
             #Lol key expired while sleuthing
             print("Key is expired lol")
             quit()
@@ -79,10 +164,16 @@ def fileGameData(game):
     #do some stuff to actually put the game data into the sqlite table
     #Stuff with matchlists will likely be done it its own file due to the code and work it will require
     #Also don't forget to add summoners to list_of_summoners here
+    for participant in game_data["participantIdentities"]:
+        if(participant["player"]["accountId"] != current_account_id):
+            #If the player we are looking at isn't the player whose matchlist we are going through add em to list to check
+            if(len(list_of_summoners) < 100):
+                list_of_summoners.append(participant["player"]["accountId"])
+        addGameToDatabase(game_data, game_timeline, participant["player"]["accountId"])
 
 go = True
 #This should be checking that the current number of games is less than the desired
-while go:
+while len(gamesAnalyzed.objects.filter()) <= max_number:
     go = False#For testing just loop through once
     #Get current summoner matchlist
     current_summoner_matchlist = riotAPIReference.getMatchListForSummonerWithAccountID(current_summoner_accountID)
@@ -103,7 +194,7 @@ while go:
     #If there is no error
     #go over each game in the matchList
     for game in current_summoner_matchlist["matches"]:
-        fileGameData(game)
+        fileGameData(game, current_summoner_accountID)
     #get next summoner
     current_summoner_accountID = list_of_summoners.pop()
     
