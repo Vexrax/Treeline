@@ -38,7 +38,7 @@ def getSummonerProfileWithSummonerID(summoner_id):
 ########## Functions for Match Getting ##########
 #Requires account ID and return json of match list in ranked twisted treeline queues
 def getMatchListForSummonerWithAccountID(account_id):
-    res = requests.get(host + "/lol/match/v3/matchlists/by-account/" + str(account_id) + "?queue=470&api_key=" + key)
+    res = requests.get(host + "/lol/match/v3/matchlists/by-account/" + str(account_id) + "?beginTime=" + str(os.getenv("PATCH_TIME")) + "&queue=470&api_key=" + key)
     if not res.ok:
         return Exception(res.status_code)
     return res.json()
