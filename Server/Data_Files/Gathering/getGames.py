@@ -22,7 +22,7 @@ django.setup()
 #Also needs to come after the djano setup
 from Treeline_gg.models import gamesAnalyzed
 
-def addGameToDatabase(game_data, timeline_data, inital_account_id):
+def addGameToDatabase(game_data, timeline_data, rank_of_game):
     # this is gonna be cancer
     for participant_id in range(1, 7):
         p_data = game_data["participants"][participant_id - 1]
@@ -38,6 +38,7 @@ def addGameToDatabase(game_data, timeline_data, inital_account_id):
             win=victory,
             champion_level=p_stats["champLevel"],
             game_length=game_data["gameDuration"],
+            game_rank=rank_of_game,
             summoner_spell_1=p_data["spell1Id"],
             summoner_spell_2=p_data["spell2Id"],
             item_1=p_stats["item0"],
@@ -169,7 +170,8 @@ def fileGameData(game, current_account_id):
             #If the player we are looking at isn't the player whose matchlist we are going through add em to list to check
             if(len(list_of_summoners) < 100):
                 list_of_summoners.append(participant["player"]["accountId"])
-        addGameToDatabase(game_data, game_timeline, participant["player"]["accountId"])
+        addGameToDatabase(game_data, game_timeline, riotAPIReference.getRankOfQueueWithAccountID(participant["player"]["accountId"], "RANKED_FLEX_TT"))
+        time.sleep(2.5)
 
 go = True
 #This should be checking that the current number of games is less than the desired
@@ -198,8 +200,7 @@ while len(gamesAnalyzed.objects.filter()) <= max_number:
     #get next summoner
     current_summoner_accountID = list_of_summoners.pop()
     
-    time.sleep(2.5) #sleep to try and prevent going over rate limit
-        
+    time.sleep(10) #sleep to try and prevent going over rate limit        
 
 
 
