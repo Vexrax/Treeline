@@ -102,7 +102,7 @@ dotenv.load_dotenv(dotenv_path=envpath)
 #first one should be a summoner name which will act as a seed
 #the second one is optional and the database will be filled up until this number
 seed_name = ""
-max_number = 10000
+max_number = 100000
 
 if(len(sys.argv) > 3):
     print("Too many arguments. Requires (summoner_name, [max_entries])")
