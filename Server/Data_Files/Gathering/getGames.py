@@ -102,7 +102,7 @@ dotenv.load_dotenv(dotenv_path=envpath)
 #first one should be a summoner name which will act as a seed
 #the second one is optional and the database will be filled up until this number
 seed_name = ""
-max_number = 100000
+max_number = 1000000
 
 if(len(sys.argv) > 3):
     print("Too many arguments. Requires (summoner_name, [max_entries])")
@@ -133,6 +133,7 @@ if(isinstance(summonerData, Exception)):
 current_summoner_accountID = summonerData["accountId"]
 current_summoner_matchlist = ""
 list_of_summoners = [] #This is a list of summoners found who will be explored after exausting current summmoner's games
+list_of_visited_summoners = [] # Just so we don't recheck old ones
 
 ##Define required functions
 def fileGameData(game, current_account_id, current_rank):
@@ -174,7 +175,7 @@ def fileGameData(game, current_account_id, current_rank):
     for participant in game_data["participantIdentities"]:
         if(participant["player"]["accountId"] != current_account_id):
             #If the player we are looking at isn't the player whose matchlist we are going through add em to list to check
-            if(len(list_of_summoners) < 100):
+            if(len(list_of_summoners) < 100) and participant["player"]["accountId"] not in list_of_summoners and participant["player"]["accountId"] not in list_of_visited_summoners:
                 list_of_summoners.append(participant["player"]["accountId"])
         addGameToDatabase(game_data, game_timeline, current_rank)
 
@@ -201,6 +202,7 @@ while len(gamesAnalyzed.objects.filter()) <= max_number:
     #If there is no error
     #go over each game in the matchList
     for game in current_summoner_matchlist["matches"]:
+        list_of_visited_summoners.append(current_summoner_accountID)
         rank = riotAPIReference.getRankOfQueueWithAccountID(current_summoner_accountID, "RANKED_FLEX_TT")
         fileGameData(game, current_summoner_accountID, rank)
     #get next summoner
