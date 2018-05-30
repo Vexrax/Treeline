@@ -59,7 +59,7 @@ def determineRole(game_timeline, game_data, participant_id):
     for i in range(1, 4):
         #loop through time frames 1 to 3 and see who is lower on the frame
         current_frame = game_timeline["frames"][i]["participantFrames"]
-        if(current_frame[str(participant_id)]["position"]["y"] < current_frame[str(participant_id)]["position"]["y"]):
+        if(current_frame[str(participant_id)]["position"]["y"] > current_frame[str(other_participant_id)]["position"]["y"]):
             votes_for_top += 1
         else:
             votes_for_bottom += 1
@@ -105,4 +105,4 @@ def getStartingItems(game_timeline, participant_id):
 #     timeline = json.load(timelineJson)
 
 
-# print(determineRole(timeline, game, 1))
+# print(determineRole(timeline, game, 4))
