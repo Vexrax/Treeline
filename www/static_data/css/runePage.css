@@ -2,12 +2,6 @@ body {
     color: white;
 }
 
-
-.container {
-    width: 25%;
-    display: inline-block;
-}
-
 .col {
     position: relative;
     padding: 0px;
