@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="/static/css/gameBlockStyle.css"/>
+<div id="container1" class="gameBoxContainer">
+    <div id="blockParent1" class="gameBlockParent">
+        <div class="gameBlockChampProfilePicture">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/330px-SNice.svg.png">
+        </div>
+        <div class="gameBlockScoreLineBox">
+            <span>Hello</span>
+        </div>
+    </div>
+    <div id="detailsBlock1" class="gameBlockDetailsParent">
+        <div class="detailsBlockTabsParent">
+            <!-- x-y: let x be the tab number and y be the container number-->
+            <div id="detailsBlockTab-1-1" class="detailsBlockTab" onclick="selectDetailsTab(1, 1)">Entry 1</div>
+            <div id="detailsBlockTab-2-1" class="detailsBlockTab" onclick="selectDetailsTab(2, 1)">Entry 2</div>
+            <div id="detailsBlockTab-3-1" class="detailsBlockTab" onclick="selectDetailsTab(3, 1)">Entry 3</div>
+        </div>
+    </div>
+    <div id="dropBar1" class="gameBoxDropDownButton" onclick="toggleDropDown(1)">
+        <div class="gameBoxDropDownButtonImage">
+            <img id="dropDownImg1" src="https://image.flaticon.com/icons/svg/60/60995.svg">
+        </div>
+    </div>
+</div>
+
+
+<script src="/static/js/gameBlockJs.js"></script>
