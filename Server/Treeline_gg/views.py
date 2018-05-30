@@ -16,14 +16,14 @@ def index(request):
         data = json.load(f)
         data = data["data"]
     
-    # patch = "8.7.1"
+    patch = "8.10.1"
     
     # loop through json adding id and url
     for key in data:
         data[key]["boxID"] = "champion_" + key
         data[key]["redirect"] = "/champion/" + key
-        # data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
-        data[key]["url"] = "/static/icons/champions/" + key + ".png"
+        data[key]["url"] = "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + key + ".png"
+        #data[key]["url"] = "/static/icons/champions/" + key + ".png"
 
     #print(data)
     #create context var
