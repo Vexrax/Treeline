@@ -6,8 +6,9 @@ from django.template import loader
 import os
 
 from django.template.defaulttags import register
-
-
+'''
+    Renders the index page.
+'''
 def index(request):
     # get current dir
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,15 +36,22 @@ def index(request):
     template = loader.get_template("homePage.html")
     return HttpResponse(template.render(context, request))
 
-#redirect searches
+'''
+    Used for handling search requests done through the search bar in the navigation bar.
+'''
 def handle_search(request):
     if request.method == "POST":
         return HttpResponseRedirect('/champion/' + request.POST.get("title", ""))
     else:
-        renderchamp(request)
+        renderchamp(request, request.POST.get("title", ""))
         return render(request, 'championpage.html')
 
-def renderchamp(request):
+'''
+    Renders the championpage
+    #TODO
+'''
+def renderchamp(request, champ):
+    #Needs to be implimented
     print("rendering champ data")
 
 def test_page(request):
