@@ -1,5 +1,8 @@
 """this module will try and determine the role of the player"""
-import riotAPIReference
+try:
+    import riotAPIReference
+except ModuleNotFoundError:
+    pass
 import json
 # Soooo.... what do ya think about neural netting this thing lol
 
