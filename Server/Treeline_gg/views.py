@@ -4,8 +4,11 @@ from django.http import HttpResponseRedirect
 from django.template import loader
 
 import os
-
+import sys
 from django.template.defaulttags import register
+
+import Data_Files.analyzeTimeline as analyzeTimeline
+
 '''
     Renders the index page.
 '''
@@ -54,7 +57,22 @@ def renderchamp(request, champ):
     #Needs to be implimented
     print("rendering champ data")
 
+''' 
+    Renders whatever the current test page is
+'''
 def test_page(request):
+    with open('../www/static_data/data_files/example_timeline.json') as f:
+        game_timeline = json.load(f)
+
+    context = {
+        'eventTimeline': analyzeTimeline.getPointsOfInterest(game_timeline),
+    }
+    ##end sections
+
+    template = loader.get_template("testpage.html")
+    return HttpResponse(template.render(context, request))
+
+def load_rune_page(request):
     ptree = 8200 #this will be fed in later
     stree = 8100
     with open('../www/static_data/data_files/rune_data.json') as f:
@@ -72,7 +90,6 @@ def test_page(request):
 
     template = loader.get_template("testpage.html")
     return HttpResponse(template.render(context, request))
-
 #create custom tags for later use
 #these are just to get data from the dict created above
 @register.simple_tag
@@ -96,3 +113,9 @@ def is_active_rune(active_runes, current_rune):
         if numb == current_rune["id"]:
             return current_rune["id"]
     return str(current_rune["id"]) + "_greyscale"
+@register.simple_tag
+def get_map_left(event):
+    return ((event["position"]["x"] / 15398) * 100) - 1 #this is this max x value for the map
+@register.simple_tag
+def get_map_top(event):
+    return ((event["position"]["y"] / 14588) * 100) #this is this max y value for the map

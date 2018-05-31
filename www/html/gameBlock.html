@@ -16,6 +16,23 @@
             <div id="detailsBlockTab-2-1" class="detailsBlockTab" onclick="selectDetailsTab(2, 1)">Entry 2</div>
             <div id="detailsBlockTab-3-1" class="detailsBlockTab" onclick="selectDetailsTab(3, 1)">Entry 3</div>
         </div>
+
+        <!-- The progression map -->
+        <div class="detailsBlockProgressionMap">
+            <div class="progressionMapDragBar">
+                <input type="range" min="0" max="100" value="50" class="progressionMapSlider" oninput="changeProgressionMap(this.value)">
+            </div>
+            <div class="progressionMap">
+                <img src="https://s3-us-west-1.amazonaws.com/riot-developer-portal/docs/map10.png">
+                {% for event in eventTimeline %}
+                    {% if event.type == "CHAMPION_KILL" %}
+                    <div class="champKillCircle" style="left: {% get_map_left event %}%; top: {% get_map_top event %}%" id="t-{{event.timestamp}}"></div>
+                    {% else %}
+                    <div class="buildingKillCircle" style="left: {% get_map_left event %}%; top: {% get_map_top event %}%" id="t-{{event.timestamp}}"></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <div id="dropBar1" class="gameBoxDropDownButton" onclick="toggleDropDown(1)">
         <div class="gameBoxDropDownButtonImage">
@@ -23,30 +40,6 @@
         </div>
     </div>
 </div>
-
-<div id="container2" class="gameBoxContainer">
-        <div id="blockParen21" class="gameBlockParent">
-            <div class="gameBlockChampProfilePicture">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/330px-SNice.svg.png">
-            </div>
-            <div class="gameBlockScoreLineBox">
-                <span>Hello</span>
-            </div>
-        </div>
-        <div id="detailsBlock2" class="gameBlockDetailsParent">
-            <div class="detailsBlockTabsParent">
-                <!-- x-y: let x be the tab number and y be the container number-->
-                <div id="detailsBlockTab-1-2" class="detailsBlockTab" onclick="selectDetailsTab(1, 2)">Entry 1</div>
-                <div id="detailsBlockTab-2-2" class="detailsBlockTab" onclick="selectDetailsTab(2, 2)">Entry 2</div>
-                <div id="detailsBlockTab-3-2" class="detailsBlockTab" onclick="selectDetailsTab(3, 2)">Entry 3</div>
-            </div>
-        </div>
-        <div id="dropBar2" class="gameBoxDropDownButton" onclick="toggleDropDown(2)">
-            <div class="gameBoxDropDownButtonImage">
-                <img id="dropDownImg2" src="https://image.flaticon.com/icons/svg/60/60995.svg">
-            </div>
-        </div>
-    </div>
 
 
 <script src="/static/js/gameBlockJs.js"></script>

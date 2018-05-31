@@ -31,6 +31,22 @@ function selectDetailsTab(selected, id) {
 
 }
 
+function changeProgressionMap(value) {
+    var dotsArr = document.querySelectorAll('[id^="t-"]');
+    for(var dot in dotsArr) {
+        var temp = dotsArr[dot]
+        if(temp.id == undefined) {
+            continue;
+        }
+        if((temp.id.substr(2) / 1693719) * 100 > value) {
+            temp.style.display = "None"
+        }
+        else {
+            temp.style.display = "inline-block"
+        }
+    }
+}
+
 // function loadJSON(callback, filename) {   
 
 //     var xobj = new XMLHttpRequest();
