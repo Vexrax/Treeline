@@ -1,5 +1,5 @@
 """this module will try and determine the role of the player"""
-import riotAPIReference
+#import riotAPIReference
 import json
 # Soooo.... what do ya think about neural netting this thing lol
 
@@ -95,6 +95,19 @@ def getStartingItems(game_timeline, participant_id):
     itemString += str(items[len(items) - 1])
     return itemString
 
+def getPointsOfInterest(game_timeline):
+    #Currently checks for champion and building kills
+    eventLine = []
+    for x in eventLine:
+        print(x['a'])
+    for frame in game_timeline["frames"]:
+        for event in frame["events"]:
+            if(event["type"] == "CHAMPION_KILL"):
+                eventLine.append(event)
+            elif(event["type"] == "BUILDING_KILL"):
+                eventLine.append(event)
+    return eventLine    
+
 # Testing
 # game = ""
 # timeline = ""
@@ -104,5 +117,10 @@ def getStartingItems(game_timeline, participant_id):
 # with open("../../../www/static_data/data_files/example_timeline.json") as timelineJson:
 #     timeline = json.load(timelineJson)
 
-
 # print(determineRole(timeline, game, 4))
+
+
+# with open("../../../www/static_data/data_files/example_timeline.json") as gameJson:
+#     game = json.load(gameJson)
+
+# getPointsOfInterest(game)
