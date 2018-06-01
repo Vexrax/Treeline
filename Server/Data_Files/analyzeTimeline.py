@@ -1,15 +1,7 @@
 """this module will try and determine the role of the player"""
-try:
-    import riotAPIReference
-except ModuleNotFoundError:
-    pass
 import json
 # Soooo.... what do ya think about neural netting this thing lol
 
-
-def analyze(game_id, game_data, participant_id):
-    game_timeline = riotAPIReference.getTimelineWithMatchID(game_id)
-    role = determineRole(game_timeline, game_data, participant_id)
 
 def determineRole(game_timeline, game_data, participant_id):
     # We will first determine if comp is running support meta. TO do this we will check if a player is lacking flash
