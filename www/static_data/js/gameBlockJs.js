@@ -33,18 +33,23 @@ function selectDetailsTab(selected, id) {
 
 function changeProgressionMap(value) {
     var dotsArr = document.querySelectorAll('[id^="t-"]');
+    var timeText = document.getElementById("mapTime");
     for(var dot in dotsArr) {
         var temp = dotsArr[dot]
         if(temp.id == undefined) {
-            continue;
+            continue;   
         }
-        if((temp.id.substr(2) / 1693719) * 100 > value) {
+        if(parseInt(temp.id.substr(2)) > parseInt(value)) {
+
             temp.style.display = "None"
         }
         else {
             temp.style.display = "inline-block"
         }
     }
+    var seconds = parseInt(parseInt(value) / 1000)
+    timeText.innerHTML = parseInt(seconds / 60) + ":" + (seconds % 60);
+    
 }
 
 // function loadJSON(callback, filename) {   

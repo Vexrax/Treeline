@@ -115,7 +115,7 @@ def is_active_rune(active_runes, current_rune):
     return str(current_rune["id"]) + "_greyscale"
 @register.simple_tag
 def get_map_left(event):
-    return ((event["position"]["x"] / 15398) * 100) - 1 #this is this max x value for the map
+    return ((event["position"]["x"] / 15398) * 100) #this is this max x value for the map
 @register.simple_tag
 def get_map_top(event):
-    return ((event["position"]["y"] / 14588) * 100) #this is this max y value for the map
+    return ((1- (event["position"]["y"] / 15398)) * 100) #this is this max y value for the map

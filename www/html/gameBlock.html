@@ -20,10 +20,13 @@
         <!-- The progression map -->
         <div class="detailsBlockProgressionMap">
             <div class="progressionMapDragBar">
-                <input type="range" min="0" max="100" value="50" class="progressionMapSlider" oninput="changeProgressionMap(this.value)">
+                {% with eventTimeline|last as lastEvent %}
+                <input type="range" min="0" max="{{lastEvent.timestamp}}" value="50" class="progressionMapSlider" oninput="changeProgressionMap(this.value)" id="progressionMapSlider">
+                {% endwith %}
             </div>
             <div class="progressionMap">
-                <img src="https://s3-us-west-1.amazonaws.com/riot-developer-portal/docs/map10.png">
+                <img src="https://s3-us-west-1.amazonaws.com/riot-developer-portal/docs/map10.png" class="progressionMapImg">
+                <div id="mapTime" class="progressionMapTime">Time</div>
                 {% for event in eventTimeline %}
                     {% if event.type == "CHAMPION_KILL" %}
                     <div class="champKillCircle" style="left: {% get_map_left event %}%; top: {% get_map_top event %}%" id="t-{{event.timestamp}}"></div>
