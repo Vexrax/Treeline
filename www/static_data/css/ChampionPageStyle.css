@@ -10,7 +10,15 @@
     width: 27.5%;
     height: 80px;
     top: 2%;
-    background-color: black;
+    background-color: #1F2833;
+    position: absolute;
+    display: inline-block;
+    border-bottom: 3px solid #131b26;
+}
+.championIconSubBox{
+    width: 35%;
+    height: 40px;
+    padding-left: 2%;
     position: absolute;
     display: inline-block;
 }
@@ -42,4 +50,18 @@
     background-color: black;
     position: absolute;
     display: inline-block;
+
+}
+.champImg {
+    max-width: 95%;
+    max-height: 95%;
+    padding-left: 2%;
+}
+.champTitle{
+    font-family: 'Josefin Sans', sans-serif;
+    color: #ffffff;
+    font-size: 40px;
+    width: inherit;
+    height: inherit;
+    top: 20px;
 }

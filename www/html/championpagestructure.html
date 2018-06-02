@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 
 
 {% extends "index.html" %}
@@ -7,7 +8,10 @@
     <div class ="UsableArea">
         <div class="champIconBox">
             {% block champIconSection %}
-
+                <img src="{{championImg}}" class= "champImg">
+                <div class="championIconSubBox">
+                    <div class="champTitle" class="championIconSubBox">{{Championname}}</div>
+                </div>
             {% endblock %}
         </div>
         <div class="summonerSpellsBox">

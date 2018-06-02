@@ -10,6 +10,8 @@ from django.template.defaulttags import register
 
 import Data_Files.analyzeTimeline as analyzeTimeline
 
+patch = "8.10.1"
+
 
 def index(request):
     '''
@@ -21,7 +23,6 @@ def index(request):
     with open(os.path.join(BASE_DIR, '../www/static_data/data_files/champs.json')) as f:
         data = json.load(f)
         data = data["data"]
-    patch = "8.10.1"
 
     # loop through json adding id and url
     for key in data:
@@ -46,19 +47,16 @@ def handle_search(request):
         Used for handling search requests done through the search bar in the navigation bar.
     '''
     if request.method == "POST":
+        #Need some error checking
         return HttpResponseRedirect('/champion/' + request.POST.get("title", ""))
     else:
-        renderchamp(request, request.POST.get("title", ""))
-        return render(request, 'championpage.html')
+        template = loader.get_template("championpage.html")
+        context = {
+            'championImg': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + request.path[10:] + ".png", 'Championname': request.path[10:]
+        }
+        print(request.path[10:])
+        return HttpResponse(template.render(context, request))
 
-
-def renderchamp(request, champ):
-    '''
-        Renders the championpage
-        #TODO
-    '''
-    #Needs to be implimented
-    print("rendering champ data")
 
 
 def test_page(request):
