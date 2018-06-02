@@ -20,7 +20,7 @@ for key in data:
     else:
         with open('../../www/static_data/icons/runes/path_icons/' + str(key["id"]) + '.png', 'wb') as img:
             img.write(img_data.content)
-            print("Done downloading image for: " +str( key['id']))
+            print("Done downloading image for: " +str(key['id']))
     
     #get each rune in path
     for key2 in key["slots"]:
