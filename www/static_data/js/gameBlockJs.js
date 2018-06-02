@@ -31,9 +31,10 @@ function selectDetailsTab(selected, id) {
 
 }
 
-function changeProgressionMap(value) {
+function changeProgressionMap() {
     var dotsArr = document.querySelectorAll('[id^="t-"]');
     var timeText = document.getElementById("mapTime");
+    value = document.getElementById("progressionMapSlider").value; 
     for(var dot in dotsArr) {
         var temp = dotsArr[dot]
         if(temp.id == undefined) {

@@ -12,7 +12,7 @@
     {% block champIcons %}
         <!-- Done with pure html -->
         {% for key in champions %}
-        <a href='{% get_redirect champions key %}'>
+        <a href='/champion/{{key}}'>
             <div class="champBoxBuffer">
                 <div id="{% get_boxID champions key %}" class="champBox">
                     <img src="{% get_url champions key %}" class="champImg">

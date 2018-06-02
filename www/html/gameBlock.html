@@ -21,7 +21,7 @@
         <div class="detailsBlockProgressionMap">
             <div class="progressionMapDragBar">
                 {% with eventTimeline|last as lastEvent %}
-                <input type="range" min="0" max="{{lastEvent.timestamp}}" value="50" class="progressionMapSlider" oninput="changeProgressionMap(this.value)" id="progressionMapSlider">
+                <input type="range" min="0" max="{{lastEvent.timestamp}}" value="{{lastEvent.timestamp}}" class="progressionMapSlider" oninput="changeProgressionMap()" id="progressionMapSlider">
                 {% endwith %}
             </div>
             <div class="progressionMap">

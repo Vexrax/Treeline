@@ -1,38 +1,39 @@
 """this module will try and determine the role of the player"""
-import json
 # Soooo.... what do ya think about neural netting this thing lol
 
 
 def determineRole(game_timeline, game_data, participant_id):
+    """Determines the role of the participant given in the given game """
+
     # We will first determine if comp is running support meta. TO do this we will check if a player is lacking flash
     # If it is support meta, the smite champ will be carry and remainder will be bot
     # If not support meta then smite will be jungler and x,y will be used for final two
     # To improve recognition check for support items from the possible support
     is_carry_comp = False
-   
+
     #Check which team the person we are analyzing is on
     team = 1
     if participant_id > 3:
-        team = 2 
-    
+        team = 2
+
     for i in range((3*team) - 3, (3*team)):
         current_participant_data = game_data["participants"][i]
         # Flash spell id is 4
         if current_participant_data["spell1Id"] != 4 and current_participant_data["spell2Id"] != 4:
             is_carry_comp = True
-    
+
     current_participant_data = game_data["participants"][participant_id - 1]
     if (is_carry_comp):
         #Smite id is 11
         if current_participant_data["spell1Id"] == 11 or current_participant_data["spell2Id"] == 11:
             return "Hyper"
-        
+
         if current_participant_data["spell1Id"] != 4 and current_participant_data["spell2Id"] != 4:
             return "Support"
-        
+
         return "Bottom"
-    
-    #if it is hyper comp then it will have returned by now. 
+
+    #if it is hyper comp then it will have returned by now.
     # So we can just default check for jungle now
     if current_participant_data["spell1Id"] == 11 or current_participant_data["spell2Id"] == 11:
         return "Jungle"
@@ -48,7 +49,7 @@ def determineRole(game_timeline, game_data, participant_id):
     if(other_participant_id == 0):
         #unable to find othe participant for some reason
         return "Undetermined"
-    
+
     votes_for_bottom = 0
     votes_for_top = 0
     for i in range(1, 4):
@@ -64,6 +65,7 @@ def determineRole(game_timeline, game_data, participant_id):
 
 
 def getStartingItems(game_timeline, participant_id):
+    """Takes a game timeline are returns a comma seperated string of the participants starting items"""
     #get items purchased between 0 and 60 seconds
     frame = game_timeline["frames"][1]
     events = frame["events"]
@@ -86,11 +88,12 @@ def getStartingItems(game_timeline, participant_id):
     itemString = ""
     for i in range(0, len(items) - 1):
         itemString += str(items[i]) + ", "
-    
+
     itemString += str(items[len(items) - 1])
     return itemString
 
 def getPointsOfInterest(game_timeline):
+    """Returns an array of json objects where each object is either a champion or building kill event"""
     #Currently checks for champion and building kills
     eventLine = []
     for x in eventLine:
@@ -101,7 +104,7 @@ def getPointsOfInterest(game_timeline):
                 eventLine.append(event)
             elif(event["type"] == "BUILDING_KILL"):
                 eventLine.append(event)
-    return eventLine    
+    return eventLine
 
 # Testing
 # game = ""

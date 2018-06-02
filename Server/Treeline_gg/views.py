@@ -1,27 +1,28 @@
+"""The basic views file. Will serve the html pages"""
+import os
 import json
 from django.shortcuts import HttpResponse, render
 from django.http import HttpResponseRedirect
 from django.template import loader
 
-import os
-import sys
+
 from django.template.defaulttags import register
 
 import Data_Files.analyzeTimeline as analyzeTimeline
 
-'''
-    Renders the index page.
-'''
+
 def index(request):
+    '''
+        Renders the index page.
+    '''
     # get current dir
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     # open champion json file
     with open(os.path.join(BASE_DIR, '../www/static_data/data_files/champs.json')) as f:
         data = json.load(f)
         data = data["data"]
-    
     patch = "8.10.1"
-    
+
     # loop through json adding id and url
     for key in data:
         data[key]["boxID"] = "champion_" + key
@@ -34,33 +35,36 @@ def index(request):
     context = {
         'champions': data,
     }
-    
+
     #get template
     template = loader.get_template("homePage.html")
     return HttpResponse(template.render(context, request))
 
-'''
-    Used for handling search requests done through the search bar in the navigation bar.
-'''
+
 def handle_search(request):
+    '''
+        Used for handling search requests done through the search bar in the navigation bar.
+    '''
     if request.method == "POST":
         return HttpResponseRedirect('/champion/' + request.POST.get("title", ""))
     else:
         renderchamp(request, request.POST.get("title", ""))
         return render(request, 'championpage.html')
 
-'''
-    Renders the championpage
-    #TODO
-'''
+
 def renderchamp(request, champ):
+    '''
+        Renders the championpage
+        #TODO
+    '''
     #Needs to be implimented
     print("rendering champ data")
 
-''' 
-    Renders whatever the current test page is
-'''
+
 def test_page(request):
+    '''
+        Renders whatever the current test page is
+    '''
     with open('../www/static_data/data_files/example_timeline.json') as f:
         game_timeline = json.load(f)
 
@@ -73,6 +77,7 @@ def test_page(request):
     return HttpResponse(template.render(context, request))
 
 def load_rune_page(request):
+    """A demonstration function to show what variables need to be fed to call a rune page"""
     ptree = 8200 #this will be fed in later
     stree = 8100
     with open('../www/static_data/data_files/rune_data.json') as f:
