@@ -22,8 +22,49 @@
         </div>
         <div class="skillingOrderBox">
             {% block skillingOrderSection %}
+                <div class="skillingOrderBar" id="levels">
+                    <li class="skillbox" style="color:transparent;">0
+                    <li class="skillbox">1
+                    <li class="skillbox">2
+                    <li class="skillbox">3
+                    <li class="skillbox">4
+                    <li class="skillbox">5
+                    <li class="skillbox">6
+                    <li class="skillbox">7
+                    <li class="skillbox">8
+                    <li class="skillbox">9
+                    <li class="skillbox">10
+                    <li class="skillbox">11
+                    <li class="skillbox">12
+                    <li class="skillbox">13
+                </div>
+
+                <div class="skillingOrderBar" id="QSkill">
+                    <li class="skillbox"><img src={{ QSpellImg }}>
+
+                </div>
+
+                <div class="skillingOrderBar" id="WSkill">
+                    <li class="skillbox">
+                        <img src={{ WSpellImg }}>
+                    </li>
+                </div>
+
+                <div class="skillingOrderBar" id="ESkill">
+                    <li class="skillbox">
+                        <img src={{ ESpellImg }}>
+                    </li>
+                </div>
+
+                <div class="skillingOrderBar" id="RSkill">
+                    <li class="skillbox">
+                        <img src={{ RSpellImg }}>
+                    </li>
+                </div>
+
             {% endblock %}
         </div>
+
         <div class="summaryBox">
             {% include "summaryBox.html" %}
         </div>

@@ -52,13 +52,11 @@ def handle_search(request):
         return HttpResponseRedirect('/champion/' + request.POST.get("title", ""))
     else:
         template = loader.get_template("championpage.html")
-        spell_1 = getSummonerSpell(champ, 1, "somerole")
-        spell_2 = getSummonerSpell(champ, 2, "somerole")
         context = {
             'championImg': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + champ + ".png",
             'Championname': request.path[10:],
-            'SummonerSpell1': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + spell_1 + ".png",
-            'SummonerSpell2': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + spell_2 + ".png",
+            'SummonerSpell1': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champ, 1, "somerole") + ".png",
+            'SummonerSpell2': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champ, 1, "somerole") + ".png",
         }
         print(request.path[10:])
         return HttpResponse(template.render(context, request))
