@@ -28,9 +28,11 @@
     height: 80px;
     top: 2%;
     left: 33%;
-    background-color: black;
+    background-color: #1F2833;
     position: absolute;
     display: inline-block;
+    border-bottom: 3px solid #131b26;
+
 }
 
 .skillingOrderBox{
@@ -64,4 +66,18 @@
     width: inherit;
     height: inherit;
     top: 20px;
+}
+.summonerSpellsBoxImgPrime {
+    max-width: 75%;
+    max-height: 75%;
+    padding-left: 15%;
+    padding-top: 10%;
+    position: relative;
+}
+.summonerSpellsBoxImgSecondary{
+    max-width: 65%;
+    max-height: 65%;
+    padding-left: 15%;
+    padding-top: 10%;
+    position: relative;
 }
