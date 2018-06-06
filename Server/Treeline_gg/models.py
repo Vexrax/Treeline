@@ -93,6 +93,8 @@ class gamesAnalyzed(models.Model):
     rune_4 = models.SmallIntegerField()
     rune_5 = models.SmallIntegerField()
     rune_6 = models.SmallIntegerField()
+    #Skilling Order
+    skilling_order = models.CharField(max_length=35, default="")
 
 
     

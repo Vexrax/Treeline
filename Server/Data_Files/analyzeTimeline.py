@@ -106,6 +106,32 @@ def getPointsOfInterest(game_timeline):
                 eventLine.append(event)
     return eventLine
 
+def getSkillingOrder(game_timeline, participant_id):
+    """Will return up to the first 15 levels for the participant"""
+    skills = []
+    for frame in game_timeline["frames"]:
+        for event in frame["events"]:
+            if(event["participantId"] == participant_id):
+                skills.append(event["skillSlot"])
+            if(len(skills) >= 15):
+                return skills
+    return skills
+
+def getSkillingOrderString(game_timeline, participant_id):
+    """Will return up to the first 15 levels for the participant"""
+    skills = ""
+    for frame in game_timeline["frames"]:
+        for event in frame["events"]:
+            if(event["type"] != "SKILL_LEVEL_UP"):
+                continue
+            if(event["participantId"] == participant_id):
+                if skills == "":
+                    skills = str(event["skillSlot"])
+                else:
+                    skills += "," + str(event["skillSlot"])
+            if(len(skills) >= 15):
+                return skills
+    return skills
 # Testing
 # game = ""
 # timeline = ""

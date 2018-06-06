@@ -4,7 +4,7 @@ import os
 import time
 
 #first load env
-env_path = "../../../.env"
+env_path = "../../.env"
 dotenv.load_dotenv(dotenv_path=env_path)
 
 #Optional check to ensure it is loaded
