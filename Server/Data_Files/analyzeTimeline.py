@@ -129,7 +129,7 @@ def getSkillingOrderString(game_timeline, participant_id):
                     skills = str(event["skillSlot"])
                 else:
                     skills += "," + str(event["skillSlot"])
-            if(len(skills) >= 15):
+            if(len(skills) >= 30):
                 return skills
     return skills
 # Testing
