@@ -15,6 +15,8 @@ class champions(models.Model):
 class bestPractices(models.Model):
     champ_profile = models.ForeignKey(champions, on_delete=models.CASCADE)#An external key linking to the champions database
     champ_id = models.SmallIntegerField(null=False)#the id of the champ
+    winrate = models.FloatField()
+    playrate = models.FloatField()
     role_1 = models.CharField(max_length=10)#primary role
     role_2 = models.CharField(max_length=10)#secondary role
     startingItems = models.CharField(max_length=30)#Starting items ID
