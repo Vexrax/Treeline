@@ -3,3 +3,4 @@ Treeline/__pycache__/
 __pycache__/
 .env
 .pylintrc
+settings.json

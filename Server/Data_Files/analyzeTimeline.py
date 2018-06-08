@@ -1,5 +1,4 @@
 """this module will try and determine the role of the player"""
-# Soooo.... what do ya think about neural netting this thing lol
 
 
 def determineRole(game_timeline, game_data, participant_id):
@@ -122,7 +121,7 @@ def getSkillingOrderString(game_timeline, participant_id):
     skills = ""
     for frame in game_timeline["frames"]:
         for event in frame["events"]:
-            if(event["type"] != "SKILL_LEVEL_UP"):
+            if(event["type"] != "SKILL_LEVEL_UP"):  
                 continue
             if(event["participantId"] == participant_id):
                 if skills == "":
