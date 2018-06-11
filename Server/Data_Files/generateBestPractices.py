@@ -95,7 +95,7 @@ def do_games_with_list(res, role, r_type):
         ending_items.append(game.item_5)
         ending_items.append(game.item_6)
 
-        skill_order.append(game.skilling_order)
+        skill_order.append(game.skilling_order[0:25])
         rune_trees.append({"primaryTree": game.primary_tree, 
                         "secondaryTree": game.secondary_tree,
                         "primaryRunes": [game.rune_1, game.rune_2, game.rune_3, game.rune_4],
@@ -143,14 +143,16 @@ def do_games_with_list(res, role, r_type):
         most_common_runes[i] = Counter(most_common_runes[i]).most_common(1)[0][0]
     # print(most_common_runes)
     var = bestPractices(
+        event_id = int(str(res[0].champ_id) + str(role)),
         champ_id = res[0].champ_id,
         winrate = win_rate,
         playrate = playrate,
+        games_played = len(res),
         role_type = r_type,
-        role = role,
+        role = roles(role).name,
         starting_items = most_common_starting_items,
         final_items = most_common_ending_items,
-        skilling_order = skill_order,
+        skilling_order = Counter(skill_order).most_common(1)[0][0],
         rune_trees = string_eq,
         tree_1 = ','.join(map(str, most_common_runes[0:4])),
         tree_2 = ','.join(map(str, most_common_runes[4:6]))

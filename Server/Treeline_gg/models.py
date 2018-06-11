@@ -13,10 +13,12 @@ class champions(models.Model):
     champ_id = models.SmallIntegerField()
 
 class bestPractices(models.Model):
+    event_id = models.IntegerField(unique=True, primary_key=True)
     #champ_profile = models.ForeignKey(champions, on_delete=models.CASCADE)#An external key linking to the champions database
     champ_id = models.SmallIntegerField(null=False)#the id of the champ
     winrate = models.FloatField(default=0)
     playrate = models.FloatField(default=0)
+    games_played = models.IntegerField(default=0)
     role_type = models.CharField(max_length=10)# Primary or Secondary
     role = models.CharField(max_length=10)# Role
     starting_items = models.CharField(max_length=30)#Starting items ID
