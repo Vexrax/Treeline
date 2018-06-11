@@ -13,15 +13,15 @@ class champions(models.Model):
     champ_id = models.SmallIntegerField()
 
 class bestPractices(models.Model):
-    champ_profile = models.ForeignKey(champions, on_delete=models.CASCADE)#An external key linking to the champions database
+    #champ_profile = models.ForeignKey(champions, on_delete=models.CASCADE)#An external key linking to the champions database
     champ_id = models.SmallIntegerField(null=False)#the id of the champ
-    winrate = models.FloatField()
-    playrate = models.FloatField()
-    role_1 = models.CharField(max_length=10)#primary role
-    role_2 = models.CharField(max_length=10)#secondary role
-    startingItems = models.CharField(max_length=30)#Starting items ID
-    finalItems = models.CharField(max_length=30) #Final items. 3 Items that are not boots
-    skillingOrder = models.CharField(max_length=30)#Contains values 1-4 for q-r abilities. For first 13 levels
+    winrate = models.FloatField(default=0)
+    playrate = models.FloatField(default=0)
+    role_type = models.CharField(max_length=10)# Primary or Secondary
+    role = models.CharField(max_length=10)# Role
+    starting_items = models.CharField(max_length=30)#Starting items ID
+    final_items = models.CharField(max_length=30) #Final items. 3 Items that are not boots
+    skilling_order = models.CharField(max_length=30)#Contains values 1-4 for q-r abilities. For first 13 levels
     rune_trees = models.CharField(max_length=30)#Contains the ID of the primary and secondary rune trees
     tree_1 = models.CharField(max_length=30)#conaints the ID of the selected runes in the primary tree
     tree_2 = models.CharField(max_length=30)#contains the ID of the selected runes in the secondary tree
