@@ -1,0 +1,23 @@
+.hoverMaster:hover {
+    cursor: pointer;
+}
+.hoverMaster:hover .hoverToolTip {
+    visibility: visible;
+}
+.hoverMaster {
+    color: white;
+    display: inline-block;
+    overflow: visible;
+    position: relative;
+}
+.hoverToolTip {
+    visibility: hidden;
+    z-index: 1;
+    background-color: darkblue;
+    border-radius: 10px;
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    width: 120px;
+    height: 200px;
+}
