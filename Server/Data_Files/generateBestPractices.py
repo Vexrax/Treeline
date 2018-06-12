@@ -35,10 +35,10 @@ class roles(Enum):
 
 def run(champion_id):
     res = gamesAnalyzed.objects.filter(champ_id=champion_id)
+    
     if(len(res) < 30):
         # if there are less than x datapoints there is not enough data
         return -1
-
     # just get playrate now. Times 6 cuz 6 players in a game so about 6 datapoints per game
     # Not perfect because some datapoints had issues so a bit less than 6 per game. But rounding lol
 
@@ -48,7 +48,8 @@ def run(champion_id):
 
     # Get primary and secondary roles
     for game in res:
-        if(game.role == "Undetermined"): return
+        if(game.role == "Undetermined"): 
+            continue
         role_counts[roles[game.role].value] += 1
     
     for i in range(len(role_counts)):
@@ -70,7 +71,6 @@ def run(champion_id):
 
 def do_games_with_list(res, role, r_type):
     playrate = (len(res) * 6) / gamesAnalyzed.objects.count()
-
     summoner_spells = [] # a list of spells. a tally will be done at the end
     starting_items = [] # same deal
     ending_items = []
@@ -167,3 +167,4 @@ with open("../../www/static_data/data_files/champion_data.json") as champData:
 for champ in champs:
     run(champs[champ]["id"])
     print("Finished " + champ)
+
