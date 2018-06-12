@@ -1,3 +1,8 @@
+.container {
+    width: 40%;
+    display: inline-block;
+    padding: 0;
+}
 body {
     color: white;
 }
@@ -24,4 +29,131 @@ body {
     margin-right: auto;
     width: 50%;
     margin-bottom: 15%;
+}
+
+.hoverArea {
+    position: relative;
+}
+.hoverArea:hover {
+    cursor: pointer;
+}
+.hoverArea:hover .runePopUp {
+    visibility: visible;
+    -webkit-animation: SHOW-POP-UP 0.75s;
+    -moz-animation: SHOW-POP-UP 0.75s;
+    -o-animation: SHOW-POP-UP 0.75s;
+    animation: SHOW-POP-UP 0.75s;
+}
+
+.runePopUp {
+    visibility: hidden;
+    z-index: 1;
+    position: absolute; 
+    left: 85%;
+    top: -10%;
+    min-width: 100px;
+    width: 150px;
+    background-color: #1F2833;
+    border-radius: 10px;
+}
+
+
+/* Ok Spam stuff goes down here */
+/* Animation frames to show the rune popup */
+@keyframes SHOW-POP-UP {
+    0% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes SHOW-POP-UP {
+    0% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes SHOW-POP-UP {
+    0% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-o-keyframes SHOW-POP-UP {
+    0% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes SHOW-POP-UP {
+    0% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Stuff to differentiate the riot keywords */
+/* Bold all riot keywords */
+lol-uikit-tooltipped-keyword {
+    font: bold;
+}
+lol-uikit-tooltipped-keyword[key="LinkTooltip_Description_MS"] {
+    color: rgb(154, 231, 135);
+    /* border-bottom: 1px solid lightblue; */
+}
+lol-uikit-tooltipped-keyword[key="LinkTooltip_Description_Adaptive"] {
+    color: rgb(243, 129, 129);
+    /* border-bottom: 1px solid lightblue; */
+}
+lol-uikit-tooltipped-keyword[key="LinkTooltip_Description_AdaptiveDmg"] {
+    color: rgb(243, 129, 129);
+    /* border-bottom: 1px solid lightblue; */
+}
+lol-uikit-tooltipped-keyword[key="LinkTooltip_Description_CDR"] {
+    color: rgb(164, 155, 248);
+    /* border-bottom: 1px solid lightblue; */
+}
+lol-uikit-tooltipped-keyword[key="LinkTooltip_Description_Takedown"] {
+    color: rgb(233, 231, 127);
+    /* border-bottom: 1px solid lightblue; */
+}
+lol-uikit-tooltipped-keyword[key="LinkTooltip_Description_Stasis"] {
+    color: rgb(233, 231, 127);
+    /* border-bottom: 1px solid lightblue; */
+}
+lol-uikit-tooltipped-keyword[key="LinkTooltip_Description_ImpairMov"] {
+    color: rgb(233, 127, 198);
+    /* border-bottom: 1px solid lightblue; */
+}
+lol-uikit-tooltipped-keyword[key="LinkTooltip_Description_ImpairAct"] {
+    color: rgb(233, 127, 198);
+    /* border-bottom: 1px solid lightblue; */
+}
+lol-uikit-tooltipped-keyword[key="LinkTooltip_Description_Immobilize"] {
+    color: rgb(153, 134, 134);
+    /* border-bottom: 1px solid lightblue; */
 }
