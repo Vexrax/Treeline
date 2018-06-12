@@ -4,6 +4,7 @@ import json
 from django.shortcuts import HttpResponse, render
 from django.http import HttpResponseRedirect
 from django.template import loader
+from Data_Files import getStatic as getStatic
 
 
 from django.template.defaulttags import register
@@ -49,20 +50,28 @@ def handle_search(request):
     champ = request.path[10:]
     if request.method == "POST":
         #Need some error checking
+
         return HttpResponseRedirect('/champion/' + request.POST.get("title", ""))
     else:
         template = loader.get_template("championpage.html")
         context = {
-            'championImg': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + champ + ".png",
-            'Championname': request.path[10:],
+            'championImg': getStatic.getChampIconUrl(champ, patch),
+            'Championname': champ,
             'SummonerSpell1': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champ, 1, "somerole") + ".png",
             'SummonerSpell2': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champ, 1, "somerole") + ".png",
+            'QSpellImg': getStatic.getAbilityUrl(champ, 0, patch),
+            'WSpellImg': getStatic.getAbilityUrl(champ, 1, patch),
+            'ESpellImg': getStatic.getAbilityUrl(champ, 2, patch),
+            'RSpellImg': getStatic.getAbilityUrl(champ, 3, patch),
+
         }
+
         print(request.path[10:])
         return HttpResponse(template.render(context, request))
 
 def getSummonerSpell(champ, magnitude, role):
     return "SummonerFlash"
+    #not done
 
 
 def test_page(request):

@@ -8,9 +8,24 @@ from django.db import models
 ##Best Stuff Table(Contains current common build and rune pages): This will likely be the only one accessed from front end
 ##Games Analyized Table
 
+'''
+Model for all the champion static data, this should only be modified when we dont have the data for a champion
+'''
 class champions(models.Model):
+
     champ_name = models.CharField(max_length=25)
     champ_id = models.SmallIntegerField()
+
+    QName = models.CharField(max_length=30)
+    WName = models.CharField(max_length=30)
+    EName = models.CharField(max_length=30)
+    RName = models.CharField(max_length=30)
+
+    QUrl = models.TextField()
+    WUrl = models.TextField()
+    EUrl = models.TextField()
+    RUrl = models.TextField()
+
 
 class bestPractices(models.Model):
     champ_profile = models.ForeignKey(champions, on_delete=models.CASCADE)#An external key linking to the champions database

@@ -88,8 +88,11 @@ def getRankOfQueueWithAccountID(account_id, queue):
     #get Rank
     return getRankOfQueueWithSummonerID(temp, queue)
 
+
+'''
 def getChampIDList():
-    res = requests.get(host + "/lol/static-data/v3/champions?locale=en_US&champListData=keys&tags=keys&dataById=true&api_key=" + key)
+    res = requests.get(host + "/lol/static-data/v3/champions?locale=en_US&champListData=keys&dataById=false&api_key=" + key)
+    print(host + "/lol/static-data/v3/champions?locale=en_US&champListData=keys&dataById=false&api_key=" + key)
     if not res.ok:
         return Exception(res.status_code)
     return res.json()
@@ -100,9 +103,9 @@ def getChampID(champId):
         return Exception(res.status_code)
     return res.json()
 
-def getChampionData(champId):
+def getChampionAbilityData(champId):
     res = requests.get(host + "/lol/static-data/v3/champions/"+ champId + "?locale=en_US&champData=spells&tags=spells&api_key=" + key)
     if not res.ok:
         return Exception(res.status_code)
     return res.json()
-
+'''
