@@ -91,7 +91,7 @@ img {
     border-top-right-radius: 5px;
 }
 
-.tablinks {
+button[class^="tablinks-"] {
     height: 40px;/*idk why my editor says this is unused. DO NOT REMOVE!!! */
     min-width: 18.5%;
     margin: 0;
@@ -100,7 +100,8 @@ img {
     outline: none;
     display: inline;
 }
-.tablinks:hover {
+
+button[class^="tablinks-"]:hover {
     cursor: pointer;
     background-color: darkgray;
 }

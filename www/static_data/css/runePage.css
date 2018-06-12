@@ -39,6 +39,7 @@ body {
 }
 .hoverArea:hover .runePopUp {
     visibility: visible;
+    /* Use an animation so that the popup doens't show instantly */
     -webkit-animation: SHOW-POP-UP 0.75s;
     -moz-animation: SHOW-POP-UP 0.75s;
     -o-animation: SHOW-POP-UP 0.75s;
@@ -55,6 +56,7 @@ body {
     width: 150px;
     background-color: #1F2833;
     border-radius: 10px;
+    padding: 5px;
 }
 
 
