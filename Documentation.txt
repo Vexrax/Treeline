@@ -1,0 +1,17 @@
+Basic Documentation
+
+Using HTML Templates:
+This section will be detailing the required context for various html entries. 
+
+Rune Pages:
+    context = {
+        'runePageJSON': rune_page_json,
+        'primaryTree': primary_tree_integer_id,
+        'secondaryTree': secondary_tree_integer_id,
+        'activeRunes': {8214, 8226, 8234, 8232, 8126, 8120},
+    }
+
+GameBlock Page:
+    context = {
+        'eventTimeline': analyzeTimeline.getPointsOfInterest(game_timeline),
+    }
