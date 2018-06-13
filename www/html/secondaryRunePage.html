@@ -9,10 +9,14 @@
             {% if forloop.counter != 1 %}
                 {% for rune in tier.runes %}
                     <div class="col">
-                        <img src="/static/icons/runes/rune_icons/{% is_active_rune activeRunes rune %}.png" class="regularImg">
+                        <div class="hoverArea">
+                            <img src="/static/icons/runes/rune_icons/{% is_active_rune activeRunes rune %}.png" class="regularImg">
+                            <div class="runePopup">
+                                {{rune.shortDesc|safe|escape}}
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
-
             {% endif %}
             
         </div>

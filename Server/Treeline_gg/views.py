@@ -8,7 +8,7 @@ from Data_Files import getStatic as getStatic
 
 
 from django.template.defaulttags import register
-
+from Treeline_gg.models import gamesAnalyzed
 import Data_Files.analyzeTimeline as analyzeTimeline
 
 patch = "8.10.1"
@@ -80,7 +80,7 @@ def test_page(request):
         'eventTimeline': analyzeTimeline.getPointsOfInterest(game_timeline),
     }
     ##end sections
-
+    example_database_call()
     template = loader.get_template("testpage.html")
     return HttpResponse(template.render(context, request))
 
@@ -103,6 +103,14 @@ def load_rune_page(request):
 
     template = loader.get_template("testpage.html")
     return HttpResponse(template.render(context, request))
+
+def example_database_call():
+    # if you want to use filters. You can use more than one. Seperate with commas I think. 
+    res = gamesAnalyzed.objects.filter(champ_id=24)
+    # or to get all entries
+    # res = gamesAnalyzed.objects.all()
+    for i in range(5):
+        print(res[i].game_id)
 #create custom tags for later use
 #these are just to get data from the dict created above
 @register.simple_tag

@@ -11,9 +11,10 @@ import analyzeTimeline
 
 # Redirect system import directory up a fewlevels
 current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-current_dir = os.path.dirname(current_dir)
+# current_dir = os.path.dirname(current_dir)
 parent_dir = current_dir
 sys.path.insert(0, parent_dir) 
+print(parent_dir)
 
 os.environ["DJANGO_SETTINGS_MODULE"] = 'Treeline.settings'
 django.setup()
@@ -72,14 +73,15 @@ def addGameToDatabase(game_data, timeline_data, rank_of_game):
                 true_damage_taken=p_stats["trueDamageTaken"],
                 cc_duration=p_stats["timeCCingOthers"],
                 total_healing=p_stats["totalHeal"],
-                primary_tree=1000,
-                secondary_tree=2000,
+                primary_tree=p_stats["perkPrimaryStyle"],
+                secondary_tree=p_stats["perkSubStyle"],
                 rune_1=p_stats["perk0"],
                 rune_2=p_stats["perk1"],
                 rune_3=p_stats["perk2"],
                 rune_4=p_stats["perk3"],
                 rune_5=p_stats["perk4"],
-                rune_6=p_stats["perk5"] 
+                rune_6=p_stats["perk5"],
+                skilling_order=analyzeTimeline.getSkillingOrderString(timeline_data, participant_id)
             )
         except KeyError:
             return
@@ -91,12 +93,12 @@ def addGameToDatabase(game_data, timeline_data, rank_of_game):
 # with open("../../../www/static_data/data_files/example_game_json.json") as gameJson:
 #     game = json.load(gameJson)
 
-# with open("../../../www/static_data/data_files/example_timeline.json") as timelineJson:
+# with open("../../www/static_data/data_files/example_timeline.json") as timelineJson:
 #     timeline = json.load(timelineJson)
-
+# print(analyzeTimeline.getSkillingOrderString(timeline, 1))
 # addGameToDatabase(game, timeline, 2)
 #quit()
-envpath = join(dirname(__file__), '../../../.env')
+envpath = join(dirname(__file__), '../../.env')
 dotenv.load_dotenv(dotenv_path=envpath)
 #takes up to 2 commandline arguments
 #first one should be a summoner name which will act as a seed
