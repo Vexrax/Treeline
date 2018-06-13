@@ -47,26 +47,21 @@ def handle_search(request):
     '''
         Used for handling search requests done through the search bar in the navigation bar.
     '''
-    champ = request.path[10:]
+    champkey = request.path[10:]
     if request.method == "POST":
-        #Need some error checking
-
-        return HttpResponseRedirect('/champion/' + request.POST.get("title", ""))
+        return HttpResponseRedirect('/champion/' + getStatic.getChampName(request.POST.get("title", "")))
     else:
         template = loader.get_template("championpage.html")
         context = {
-            'championImg': getStatic.getChampIconUrl(champ, patch),
-            'Championname': champ,
-            'SummonerSpell1': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champ, 1, "somerole") + ".png",
-            'SummonerSpell2': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champ, 1, "somerole") + ".png",
-            'QSpellImg': getStatic.getAbilityUrl(champ, 0, patch),
-            'WSpellImg': getStatic.getAbilityUrl(champ, 1, patch),
-            'ESpellImg': getStatic.getAbilityUrl(champ, 2, patch),
-            'RSpellImg': getStatic.getAbilityUrl(champ, 3, patch),
-
+            'championImg': getStatic.getChampIconUrl(champkey, patch),
+            'Championname': getStatic.getChampName(champkey),
+            'SummonerSpell1': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champkey, 1, "somerole") + ".png",
+            'SummonerSpell2': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champkey, 1, "somerole") + ".png",
+            'QSpellImg': getStatic.getAbilityUrl(champkey, 0, patch),
+            'WSpellImg': getStatic.getAbilityUrl(champkey, 1, patch),
+            'ESpellImg': getStatic.getAbilityUrl(champkey, 2, patch),
+            'RSpellImg': getStatic.getAbilityUrl(champkey, 3, patch),
         }
-
-        print(request.path[10:])
         return HttpResponse(template.render(context, request))
 
 def getSummonerSpell(champ, magnitude, role):

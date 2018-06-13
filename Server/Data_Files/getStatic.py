@@ -1,4 +1,5 @@
 import json
+from utilityFiles import getJSONFile
 
 def getAbilityUrl(champName, abilityNum, patch):
     try:
@@ -12,5 +13,13 @@ def getAbilityUrl(champName, abilityNum, patch):
 def getChampIconUrl(champName, patch):
     return "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + champName + ".png"
 
+def refreshStaticJsons():
+    getJSONFile.getJsonFile('all')
 
-
+def getChampName(champkey):
+    try:
+        champIdList = json.loads(open("../www/static_data/data_files/champs.json").read())
+        return champIdList['data'][champkey]['name']
+    except KeyError:
+        print("KeyError")
+        return "404 Champ Not Found"
