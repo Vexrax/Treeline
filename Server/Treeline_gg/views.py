@@ -5,6 +5,7 @@ from django.shortcuts import HttpResponse, render
 from django.http import HttpResponseRedirect
 from django.template import loader
 from Data_Files import getStatic as getStatic
+from Data_Files import getDynamic as getDynamic
 
 
 from django.template.defaulttags import register
@@ -55,8 +56,8 @@ def handle_search(request):
         context = {
             'championImg': getStatic.getChampIconUrl(champkey, patch),
             'Championname': getStatic.getChampName(champkey),
-            'SummonerSpell1': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champkey, 1, "somerole") + ".png",
-            'SummonerSpell2': "http://ddragon.leagueoflegends.com/cdn/" + patch + "/img/spell/" + getSummonerSpell(champkey, 1, "somerole") + ".png",
+            'SummonerSpell1': getDynamic.getSummonerSpell(patch, 1, champkey),
+            'SummonerSpell2': getDynamic.getSummonerSpell(patch, 2, champkey),
             'QSpellImg': getStatic.getAbilityUrl(champkey, 0, patch),
             'WSpellImg': getStatic.getAbilityUrl(champkey, 1, patch),
             'ESpellImg': getStatic.getAbilityUrl(champkey, 2, patch),
